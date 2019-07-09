@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/DataTables/AutoFill-2.3.3/css/autoFill.bootstrap4.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/DataTables/Buttons-1.5.6/css/buttons.bootstrap4.min.css' %}"/>
+{% endblock %}
+
+{% block js %}
+    <script  src="{% static 'vendors/DataTables/JSZip-2.5.0/jszip.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/pdfmake-0.1.36/pdfmake.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/pdfmake-0.1.36/vfs_fonts.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/DataTables-1.10.18/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/AutoFill-2.3.3/js/dataTables.autoFill.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/AutoFill-2.3.3/js/autoFill.bootstrap4.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/Buttons-1.5.6/js/dataTables.buttons.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/Buttons-1.5.6/js/buttons.bootstrap4.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/Buttons-1.5.6/js/buttons.colVis.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/Buttons-1.5.6/js/buttons.html5.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/Buttons-1.5.6/js/buttons.print.min.js' %}"></script>
+    <script  src="{% static 'vendors/js/apps/tabla-datos.js' %}"></script>
+{% endblock %}
