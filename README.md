@@ -2,9 +2,9 @@
 
 Aplicacion saas para la gestion de medicamentos en una fatmacia
 
-## Empezando
+## Iniciar con Docker
 
-Estas instrucciones le brindarán una copia del proyecto en funcionamiento en su máquina local para fines de desarrollo y prueba. Consulte la implementación para ver las notas sobre cómo implementar el proyecto en un sistema en vivo.
+Estas instrucciones le brindarán una copia del proyecto en funcionamiento en su máquina local para fines de desarrollo y prueba. Consulte la implementación para ver las notas sobre cómo instalacion el proyecto en un sistema en vivo.
 
 ### Prerequisitos
 
@@ -63,6 +63,76 @@ docker-compose restart
 ```
 
 Para finalizar solo debemos ingresar al localhost mencionado por el servidor para ver nuestra aplicacion corriendo
+
+```
+http://localhost:8000
+```
+## Iniciar con Virtual envz
+Estas instrucciones permiten arrancar la aplicacion usando Virtualenv para quienes no usan docker.
+
+### Prerequisitos
+
+Para implementar la aplicacion debe tener instalado:
+
+```
+python 3.7
+pip
+virtualenv
+```
+
+### Instalacion
+
+Para ejecutar el entorno de desarrollo debe de hacer el siguiente paso a paso.
+
+Clonar repositorio de github
+
+```
+git clone https://github.com/diegoapb/SaaS_SuperDrogas.git
+```
+luego debemos crear el entorno virtual
+
+```
+virtualenv ........
+.
+.
+.
+
+```
+
+#### Si no existe una base de datos debe ser creada ####
+
+Debes tener una base de datos llamada **multitenant** se creara **automaticamente**, de lo contrario ejecutaras este comando.
+
+```Sh
+psql -U postgres -c "create database multitenant"
+
+.
+.
+.
+.
+
+```
+#### Si no has hecho las migraciones de la base de datos debes hacer los siguientes pasos
+
+Luego de que el proceso halla finalizado, a migrar los esquemas a labase de datos
+
+```Python
+python manage.py migrate_schemas
+```
+Agregar datos iniciales a postgres:
+
+agrege los datos iniciales a la base de datos, estos se encuentran en la siguiente direccion ``` ./_datos_iniciales ``` para agregarlos usa el sgte comando o desde su pgadmin
+
+```
+psql -U postgres -d multitenant -f /home/_datos_iniciales/1_tenant_publico.sql
+
+.
+.
+.
+
+
+```
+arrancamos la aplicacion en 
 
 ```
 http://localhost:8000
