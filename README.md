@@ -78,4 +78,12 @@ http://localhost:8000
 
 ## Autores
 
+
+* [Laura Villan](https://github.com/laura2398)-01
+* [Sebastian Lopez](https://github.com/sebas119)-02
+* [Daniel Baltazar](https://github.com/terbas1)-03
+* [Helen Bonilla](https://github.com/HelenBonilla)-04
+* [Diego Parra](https://github.com/Diegoapb)-05
+* [Carlos Acuaruri]()-06
+
 ## Licencia
