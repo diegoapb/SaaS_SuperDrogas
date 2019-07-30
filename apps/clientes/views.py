@@ -4,6 +4,8 @@ from django.db import transaction
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 
+def landing(request):
+    return render(request, 'landing/index.html', {})
 
 def home(request):
     return render(request, 'base.html', {})
