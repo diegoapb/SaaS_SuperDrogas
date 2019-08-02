@@ -1,0 +1,77 @@
+{% extends "account/base_monster.html" %}
+{% load static i18n %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <section id="wrapper">
+        <div class="login-register" style="background-image:url({% static '/assets/images/background/login-register.jpg' %});">        
+            <div class="login-box card">
+            <div class="card-block">
+                <form class="form-horizontal form-material" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                    <h3 class="box-title m-b-20">{% trans "Sign Up" %}</h3>
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}                                        
+                    <div class="form-group text-center m-t-20">
+                        <div class="col-xs-12">
+                            <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">
+                            {% trans "Sign Up" %} &raquo;
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group m-b-0">
+                        <div class="col-sm-12 text-center">
+                            <p>Already have an account? <a href="{% url 'account_login' %}" class="text-info m-l-5"><b>{% trans "Sign In" %}</b></a></p>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+          </div>
+        </div>
+        
+    </section>
+
+
+{% endblock %}
+{% comment "" %}
+
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block inner %}
+<h1>{% trans "Sign Up" %}</h1>
+
+<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  {{ form|crispy }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
+</form>
+
+{% endblock %}
+{% endcomment %}
+
