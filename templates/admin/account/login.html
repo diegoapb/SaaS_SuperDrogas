@@ -1,4 +1,4 @@
-{% extends "account/base_monster.html" %}
+{% extends "admin/account/base_monster.html" %}
 {% load static i18n %}
 {% load account socialaccount %}
 {% load crispy_forms_tags %}
@@ -20,7 +20,7 @@
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
     <section id="wrapper">
-        <div class="login-register" style="background-image:url({% static '/assets/images/background/login-register.jpg' %});">        
+        <div class="login-register" style="background-image:url({% static 'admin/assets/images/background/login-register.jpg' %});">
             <div class="login-box card">
             <div class="card-block">
                 <form class="form-horizontal form-material" id="loginform" method="POST" action="{% url 'account_login' %}">

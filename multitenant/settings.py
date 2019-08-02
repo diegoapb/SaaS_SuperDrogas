@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['.localhost']
 SHARED_APPS = (
     'django_tenants',  # Obligatorio
     'apps.clientes',  # Se debe listar la app que contiene el modelo que representa al tenant
+    'apps.admin',
     'django.contrib.contenttypes',
 
     # everything below here is optional
@@ -68,7 +69,7 @@ INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in S
 TENANT_MODEL = "clientes.Cliente" # Modelo que hereda de TenantMixin
 TENANT_DOMAIN_MODEL = "clientes.Dominio"  # Modelo que hereda de DomainMixin
 
-
+SITE_ID = 2
 MIDDLEWARE = [
     'django_tenants.middleware.main.TenantMainMiddleware', # Necesario que este en el top de los MIDDLEWARE
     'django.middleware.security.SecurityMiddleware',
