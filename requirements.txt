@@ -1,5 +1,7 @@
 Django==2.1.8
-django-tenants==2.1.0
-psycopg2==2.8.1
 django-bootstrap4==0.0.8
-
+django-tenants==2.1.0
+pep8==1.7.1
+psycopg2==2.8.1
+psycopg2-binary==2.8.3
+pytz==2019.1
