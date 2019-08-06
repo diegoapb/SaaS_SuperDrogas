@@ -110,9 +110,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django_tenants.postgresql_backend',
         'NAME': 'multitenant',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'postgres',
+        'USER': 'oliver',
+        'PASSWORD': 'daniel261516',
         'PORT': '5432',
     }
 }

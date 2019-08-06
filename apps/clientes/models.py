@@ -19,3 +19,4 @@ class Dominio(DomainMixin):
     Modelo que representará al dominio en el sistema
     """
     pass
+

@@ -3,6 +3,14 @@ from django.contrib import messages
 from django.db import transaction
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
+from django.contrib.auth import (
+    authenticate,
+    get_user_model,
+    login,
+    logout
+)
+
+User = get_user_model()
 
 
 def home(request):
@@ -31,7 +39,8 @@ def registrar_cliente(request):
                     Se crea el dominio y se le asocia información alojada en el tenant. En este punto es que sucede la
                     creación del esquema del tenant en la base de datos
                     """
-                    Dominio.objects.create(domain='%s%s' % (cliente.schema_name, settings.DOMAIN), is_primary=True, tenant=cliente)
+                    Dominio.objects.create(domain='%s%s' % (cliente.schema_name, settings.DOMAIN), is_primary=True,
+                                           tenant=cliente)
                     messages.success(request, "Se ha registrado correctamente el cliente")
             except Exception:
                 messages.error(request, 'Ha ocurrido un error durante la creación del cliente, se aborto la operación')
@@ -62,3 +71,25 @@ def modificar_cliente(request, id_cliente):
             messages.error(request, "Por favor verificar los campos en rojo")
 
     return render(request, 'clientes/registrar.html', {'form': form, 'dominios': dominios})
+
+
+def login_view(request):
+    next = request.GET.get('')
+    form = UserLoginForm(request.POST or None)
+    print("111111111111")
+    if form.is_valid():
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+        user = authenticate(username=username, password=password)
+        login(request, user)
+
+        if next:
+            return redirect(next)
+
+        return redirect('/clientes/registrar/')
+
+    context = {
+        'form': form,
+
+    }
+    return render(request, 'login.html', context)
