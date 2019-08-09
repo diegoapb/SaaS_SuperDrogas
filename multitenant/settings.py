@@ -43,6 +43,7 @@ SHARED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.staticfiles',
+    'social_django',
 
     'bootstrap4',
 )
@@ -79,6 +80,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'multitenant.tenant_urls'
@@ -96,6 +99,9 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social_django.context_processors.backends',  # <--
+                'social_django.context_processors.login_redirect', # <--
             ],
         },
     },
@@ -166,3 +172,21 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static_collected')
+
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+LOGIN_URL = 'administrador/login'
+LOGOUT_URL = 'administrador/logout'
+LOGIN_REDIRECT_URL = 'administrador/home'
+
+
+SOCIAL_AUTH_GITHUB_KEY = 'ab4592b2a5e55d93a4b9'
+SOCIAL_AUTH_GITHUB_SECRET = '6cfe527a12e9619b2cdb0cce58ccd541770a07e8'

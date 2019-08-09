@@ -7,5 +7,5 @@ urlpatterns = [
     path('', landing, name='landing'),
     path('admin/', home, name='home'),
     path('clientes/', include('apps.clientes.urls', namespace='clientes')),
-    url(r'^administrador/', include('apps.admin.urls')),
+    url(r'^administrador/', include('apps.admin.urls', namespace='administrador')),
 ]
