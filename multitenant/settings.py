@@ -183,10 +183,12 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
-LOGIN_URL = 'administrador/login'
-LOGOUT_URL = 'administrador/logout'
-LOGIN_REDIRECT_URL = 'administrador/home'
+LOGIN_URL = '/administrador/login'
+LOGOUT_URL = '/administrador/logout'
+LOGIN_REDIRECT_URL = '/administrador/dashboard'
+LOGOUT_REDIRECT_URL = '/'
 
 
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_GITHUB_KEY = 'ab4592b2a5e55d93a4b9'
 SOCIAL_AUTH_GITHUB_SECRET = '6cfe527a12e9619b2cdb0cce58ccd541770a07e8'

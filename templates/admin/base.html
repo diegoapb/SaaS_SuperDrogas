@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% load static i18n %}<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -71,7 +71,7 @@
               </li>
               <li class="nav-item">
                 {# URL provided by django-allauth/account/urls.py #}
-                <a class="nav-link" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
+                <a class="nav-link" href="{% url 'administrador:logout' %}">{% trans "Sign Out" %}</a>
               </li>
             {% else %}
               <li class="nav-item">
@@ -360,7 +360,7 @@
                                     <li role="separator" class="divider"></li>
                                     <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="{% url 'account_logout' %}"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li><a href="{% url 'administrador:logout' %}"><i class="fa fa-power-off"></i> Logout</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -392,7 +392,7 @@
                             <a href="#" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a>
                             <a href="#" class="dropdown-item"><i class="ti-email"></i> Inbox</a>
                             <div class="dropdown-divider"></div> <a href="#" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a>
-                            <div class="dropdown-divider"></div> <a href="{% url 'account_logout' %}" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
+                            <div class="dropdown-divider"></div> <a href="{% url 'administrador:logout' %}" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
                         </div>
                     </div>
                 </div>
@@ -440,7 +440,7 @@
                 <!-- item-->
                 <a href="" class="link" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
                 <!-- item-->
-                <a href="{% url 'account_logout' %}" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
+                <a href="{% url 'administrador:logout' %}" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
             </div>
             <!-- End Bottom points-->
         </aside>

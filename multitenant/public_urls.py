@@ -8,4 +8,5 @@ urlpatterns = [
     path('admin/', home, name='home'),
     path('clientes/', include('apps.clientes.urls', namespace='clientes')),
     url(r'^administrador/', include('apps.admin.urls', namespace='administrador')),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
 ]
