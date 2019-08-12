@@ -3,10 +3,62 @@
 
 {% block inner %}
 
-<h2>Settings</h2>
+    <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <h3 class="text-themecolor m-b-0 m-t-0">Settings</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Configuraciones</a></li>
+                            <li class="breadcrumb-item active">Settings Social</li>
+                        </ol>
+                    </div>
+                    <div class="col-md-6 col-4 align-self-center">
+                        <button class="right-side-toggle waves-effect waves-light btn-info btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+                        <button class="btn pull-right hidden-sm-down btn-success"><i class="mdi mdi-plus-circle"></i> Create</button>
+                        <div class="dropdown pull-right m-r-10 hidden-sm-down">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                January 2017
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">February 2017</a>
+                                <a class="dropdown-item" href="#">March 2017</a>
+                                <a class="dropdown-item" href="#">April 2017</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
 
-  <h3>GitHub</h3>
-  {% if github_login %}
+                <!-- .row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card card-outline-info">
+
+                            <div class="card-block">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-body">
+                                        <h3 class="box-title">Configuraciones de conexión con distintos proveedores</h3>
+                                        <hr class="m-t-0 m-b-40">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="control-label text-right col-md-3">GitHub</label>
+                                                    <div class="col-md-9">
+                                                        <p class="form-control-static">
+
+
+                                                            {% if github_login %}
     <p>Connected as <a href="https://github.com/{{ github_login.extra_data.login }}/" target="_blank">{{ github_login.extra_data.login }}</a></p>
     {% if can_disconnect %}
       <form method="post" action="{% url 'social:disconnect' 'github' %}">
@@ -21,24 +73,19 @@
     <a href="{% url 'social:begin' 'github' %}">Connect to GitHub</a>
   {% endif %}
 
-  <h3>Twitter</h3>
-  {% if twitter_login %}
-    <p>Connected as <a href="https://twitter.com/{{ twitter_login.extra_data.access_token.screen_name }}/" target="_blank">@{{ twitter_login.extra_data.access_token.screen_name }}</a></p>
-    {% if can_disconnect %}
-      <form method="post" action="{% url 'social:disconnect' 'twitter' %}">
-        {% csrf_token %}
-        <button type="submit">Disconnect from Twitter</button>
-      </form>
-    {% else %}
-      <button type="button" disabled>Disconnect from Twitter</button>
-      <p style="color: red">You must <a href="{% url 'administrador:password' %}">define a password</a> for your account before disconnecting from Twitter.</p>
-    {% endif %}
-  {% else %}
-    <a href="{% url 'social:begin' 'twitter' %}">Connect to Twitter</a>
-  {% endif %}
 
-  <h3>Facebook</h3>
-  {% if facebook_login %}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="control-label text-right col-md-3">Facebook</label>
+                                                    <div class="col-md-9">
+                                                        <p class="form-control-static">
+
+                                                        {% if facebook_login %}
     <p>Connected as <a href="https://facebook.com/{{ facebook_login.extra_data.id }}/" target="_blank">{{ facebook_login.extra_data.id }}</a></p>
     {% if can_disconnect %}
       <form method="post" action="{% url 'social:disconnect' 'facebook' %}">
@@ -52,5 +99,29 @@
   {% else %}
     <a href="{% url 'social:begin' 'facebook' %}">Connect to Facebook</a>
   {% endif %}
+
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                        </div>
+                                        <!--/row-->
+
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /row -->
+
+
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+
 
 {% endblock %}
