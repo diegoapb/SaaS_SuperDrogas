@@ -64,3 +64,7 @@ def modificar_cliente(request, id_cliente):
             messages.error(request, "Por favor verificar los campos en rojo")
 
     return render(request, 'clientes/registrar.html', {'form': form, 'dominios': dominios})
+
+
+def index(request):
+    return render(request, 'tienda1/index.html', {})

@@ -33,7 +33,6 @@ ALLOWED_HOSTS = ['.localhost']
 SHARED_APPS = (
     'django_tenants',  # Obligatorio
     'apps.clientes',  # Se debe listar la app que contiene el modelo que representa al tenant
-    'apps.admin',
     'django.contrib.contenttypes',
 
     # everything below here is optional
@@ -58,9 +57,10 @@ TENANT_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.staticfiles',
+    'social_django',
 
     'bootstrap4',
-
+    'apps.admin',
     'apps.mensajes',
 
 )
