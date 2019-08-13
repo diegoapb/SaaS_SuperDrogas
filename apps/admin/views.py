@@ -24,7 +24,7 @@ def signup(request):
 
 @login_required
 def home(request):
-    return render(request, 'admin/account/base.html')
+    return render(request, 'admin/account/dashboard.html')
 
 @login_required
 def settings(request):
