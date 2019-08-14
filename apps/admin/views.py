@@ -24,7 +24,7 @@ def signup(request):
 
 @login_required
 def home(request):
-    return render(request, 'admin/account/dashboard.html')
+    return render(request, 'administrador/account/dashboard.html')
 
 @login_required
 def settings(request):
@@ -45,7 +45,7 @@ def settings(request):
 
     can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
 
-    return render(request, 'admin/account/social_settings.html', {
+    return render(request, 'administrador/account/social_settings.html', {
         'github_login': github_login,
         'twitter_login': twitter_login,
         'facebook_login': facebook_login,
@@ -70,4 +70,4 @@ def password(request):
             messages.error(request, 'Please correct the error below.')
     else:
         form = PasswordForm(request.user)
-    return render(request, 'admin/account/social_password.html', {'form': form})
+    return render(request, 'administrador/account/social_password.html', {'form': form})
