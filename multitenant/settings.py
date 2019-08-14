@@ -60,7 +60,7 @@ TENANT_APPS = (
     'social_django',
 
     'bootstrap4',
-    'apps.admin',
+    'apps.administrador',
     'apps.mensajes',
 
 )
@@ -196,3 +196,6 @@ SOCIAL_AUTH_FACEBOOK_KEY = '376245216421538'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = 'ad588fb09bb5d78853c55e39b96d7a0f'  # App Secret
 
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+
+# Testing new model for auth with abstractUser and BaseUserManager
+#AUTH_USER_MODEL = 'administrador.User'

@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from apps.admin import views as core_views
+from apps.administrador import views as core_views
 from django.contrib.auth import views as auth_views
 
 app_name = 'administrador'
