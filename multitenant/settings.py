@@ -42,6 +42,7 @@ SHARED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.staticfiles',
+    'social_django',
 
     'bootstrap4',
 )
@@ -56,9 +57,10 @@ TENANT_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.staticfiles',
+    'social_django',
 
     'bootstrap4',
-
+    'apps.administrador',
     'apps.mensajes',
 
 )
@@ -68,7 +70,7 @@ INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in S
 TENANT_MODEL = "clientes.Cliente" # Modelo que hereda de TenantMixin
 TENANT_DOMAIN_MODEL = "clientes.Dominio"  # Modelo que hereda de DomainMixin
 
-
+SITE_ID = 2
 MIDDLEWARE = [
     'django_tenants.middleware.main.TenantMainMiddleware', # Necesario que este en el top de los MIDDLEWARE
     'django.middleware.security.SecurityMiddleware',
@@ -78,6 +80,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'multitenant.tenant_urls'
@@ -95,6 +99,9 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social_django.context_processors.backends',  # <--
+                'social_django.context_processors.login_redirect', # <--
             ],
         },
     },
@@ -165,3 +172,30 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static_collected')
+
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+LOGIN_URL = '/administrador/login'
+LOGOUT_URL = '/administrador/logout'
+LOGIN_REDIRECT_URL = '/administrador/dashboard'
+LOGOUT_REDIRECT_URL = '/'
+
+# Social Auth Providers
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+SOCIAL_AUTH_GITHUB_KEY = 'ab4592b2a5e55d93a4b9'
+SOCIAL_AUTH_GITHUB_SECRET = '6cfe527a12e9619b2cdb0cce58ccd541770a07e8'
+SOCIAL_AUTH_FACEBOOK_KEY = '376245216421538'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'ad588fb09bb5d78853c55e39b96d7a0f'  # App Secret
+
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+
+# Testing new model for auth with abstractUser and BaseUserManager
+#AUTH_USER_MODEL = 'administrador.User'

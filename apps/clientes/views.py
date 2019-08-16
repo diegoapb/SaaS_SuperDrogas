@@ -4,6 +4,8 @@ from django.db import transaction
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 
+def landing(request):
+    return render(request, 'landing/index.html', {})
 
 def home(request):
     return render(request, 'base.html', {})
@@ -62,3 +64,7 @@ def modificar_cliente(request, id_cliente):
             messages.error(request, "Por favor verificar los campos en rojo")
 
     return render(request, 'clientes/registrar.html', {'form': form, 'dominios': dominios})
+
+
+def index(request):
+    return render(request, 'tienda1/index.html', {})

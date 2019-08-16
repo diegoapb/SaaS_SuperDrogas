@@ -27,11 +27,11 @@ media
 .Python
 build/
 develop-eggs/
-dist/
+#dist/
 downloads/
 eggs/
 .eggs/
-lib/
+#lib/
 lib64/
 parts/
 sdist/
@@ -140,3 +140,10 @@ dmypy.json
 *.code-workspace
 
 # End of https://www.gitignore.io/api/django
+
+.idea
+
+# Para los que usan vscode
+.vscode
+# En caso de que usen pipfile, descomentar
+Pipfile
