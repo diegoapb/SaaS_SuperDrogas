@@ -1,0 +1,27 @@
+0. Asegurese de tener instalado postgresql 9.2 + y python 3
+- Se recomienda crear un ambiente virtual para ejecutar el proyecto 
+
+USAR SUDO SI ES EN LINUX
+
+1. docker-compose run web pip install -r requirements.txt
+2. Crear base de datos (revisar settings.py) llamada "multitenant"
+2.1. Actualizar configuración de la base de datos en settings.py (nombre de su usuario y contraseña de su usuario)
+3. docker-compose run web python manage.py makemigrations
+4. docker-compose run web python manage.py migrate_schemas
+5. ejecutar el siguiente codigo sql (para crear el tenant publico):
+    INSERT INTO "clientes_cliente" ("schema_name", "nombre") VALUES ('public', 'public');
+    Nota: El schema_name debe ser public, puesto que es el esquema por defecto que hay en postgres.
+
+6. Ejecutar el siguiente codigo sql (para asociar el dominio/subdominio que tendrá nuestro tenant publico, para este caso sería el dominio: localhost)
+    INSERT INTO "clientes_dominio" ("domain", "is_primary", "tenant_id") VALUES ('localhost', true, 1);
+    Nota: Para el caso del public no se especifica subdominio, para los tenants si, es decir el campo domain para un tenant debe ser: "subdominio.localhost".
+    Nota 2: is_primary especifica si este dominio es el dominio principal de nuestro tenant (puede tener varios).
+
+7. python manage.py runserver
+8. Acceder a: http://localhost:8000/clientes/registrar/ (se puede cambiar el puerto donde ejecuta), aquí vamos a crear un nuevo tenant
+9. Crear el nuevo tenant. El campo "Subdominio" será usado en este ejemplo como el subdominio asociado al tenant a crear, es decir, si en el campo "Subdominio" es "tenant1" el subdominio asociado será "tenant1.localhost".
+10. Ingresamos al nuevo tenant, en nuestro ejemplo: http://tenant1.localhost:8000/
+11. Registramos un mensaje en el tenant ingresando  a la url http://tenant1.localhost:8000/mensajes/registrar/ para registrar mensajes en el tenant
+13. Ingresamos a la base de datos a la tabla mensajes_mensaje en el esquema "tenant1" y observamos que se creo el dato para el tenant.
+
+docker run -p 80:80 -e "PGADMIN_DEFAULT_EMAIL=user@domain.com" -e "PGADMIN_DEFAULT_PASSWORD=SuperSecret" -d dpage/pgadmin4

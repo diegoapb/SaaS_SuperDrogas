@@ -1,0 +1,7 @@
+ {% url 'clientes:registrar' as registrar %}
+<li class="nav-item {% if registrar in request.path %}active{% endif %}">
+    <a class="nav-link" href="{{ registrar }}">
+        <i class="menu-icon mdi mdi-television"></i>
+        <span class="menu-title">Clientes</span>
+    </a>
+</li>

@@ -1,0 +1,123 @@
+{#{% extends "base.html" %}#}
+{% comment %}
+{% block title %}{% block head_title %}{% endblock head_title %}{% endblock title %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    {% block inner %}{% endblock %}
+  </div>
+</div>
+{% endblock %}
+{% endcomment %}
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}{% block head_title %}{% endblock head_title %}{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <link rel="icon" href="{% static 'admin/images/favicons/favicon.ico' %}">
+
+    {% block css %}
+
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <!--<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+
+
+    <!-- Your stuff: Third-party CSS libraries go here -->
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'admin/assets/images/favicon.png' %}">
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'admin/assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- chartist CSS -->
+    <link href="{% static 'admin/assets/plugins/chartist-js/dist/chartist.min.css' %}" rel="stylesheet">
+    <link href="{% static 'admin/assets/plugins/chartist-js/dist/chartist-init.css' %}" rel="stylesheet">
+    <link href="{% static 'admin/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css' %}" rel="stylesheet">
+    <link href="{% static 'admin/assets/plugins/css-chart/css-chart.css' %}" rel="stylesheet">
+    <!-- toast CSS -->
+    <link href="{% static 'admin/assets/plugins/toast-master/css/jquery.toast.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'admin/css/style.css' %}" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="{% static 'admin/css/colors/blue.css' %}" id="theme" rel="stylesheet">
+
+    <!-- This file stores project-specific CSS -->
+
+    <link href="{% static 'admin/css/project.min.css' %}" rel="stylesheet">
+
+
+    {% endblock %}
+
+  </head>
+
+  <body>
+
+
+
+      {% block content %}
+
+      {% endblock content %}
+
+
+
+    {% block modal %}{% endblock modal %}
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    {% block javascript %}
+
+      <!-- Bootstrap JS and its dependencies-->
+      <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
+
+      <!-- Your stuff: Third-party javascript libraries go here -->
+      <script src="{% static 'admin/assets/plugins/jquery/jquery.min.js' %}"></script>
+      <!-- Bootstrap tether Core JavaScript -->
+      <script src="{% static 'admin/assets/plugins/bootstrap/js/tether.min.js' %}"></script>
+      <script src="{% static 'admin/assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+      <!-- slimscrollbar scrollbar JavaScript -->
+      <script src="{% static 'admin/js/jquery.slimscroll.js' %}"></script>
+      <!--Wave Effects -->
+      <script src="{% static 'admin/js/waves.js' %}"></script>
+      <!--Menu sidebar -->
+      <script src="{% static 'admin/js/sidebarmenu.js' %}"></script>
+      <!--stickey kit -->
+      <script src="{% static 'admin/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js' %}"></script>
+      <!--Custom JavaScript -->
+      <script src="{% static 'admin/js/custom.min.js' %}"></script>
+      <!-- ============================================================== -->
+      <!-- This page plugins -->
+      <!-- ============================================================== -->
+      <!-- chartist chart -->
+      <script src="{% static 'admin/assets/plugins/chartist-js/dist/chartist.min.js' %}"></script>
+      <script src="{% static 'admin/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js' %}"></script>
+      <!-- Chart JS -->
+      <script src="{% static 'admin/assets/plugins/echarts/echarts-all.js' %}"></script>
+      <script src="{% static 'admin/assets/plugins/toast-master/js/jquery.toast.js' %}"></script>
+      <!-- Chart JS -->
+      <script src="{% static 'admin/js/dashboard1.js' %}"></script>
+      <script src="{% static 'admin/js/toastr.js' %}"></script>
+      <!-- ============================================================== -->
+      <!-- Style switcher -->
+      <!-- ============================================================== -->
+      <script src="{% static 'admin/assets/plugins/styleswitcher/jQuery.style.switcher.js' %}"></script>
+
+      <!-- place project specific Javascript in this file -->
+
+      <script src="{% static 'admin/js/project.js' %}"></script>
+      
+
+    {% endblock javascript %}
+  </body>
+</html>
