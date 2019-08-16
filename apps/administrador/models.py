@@ -1,4 +1,4 @@
-# admin.models.py
+"""Administrador models"""
 
 from django.db import models
 from model_utils.models import TimeStampedModel
@@ -16,14 +16,20 @@ class Role(TimeStampedModel):
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_type = models.PositiveSmallIntegerField(
-        choices=USER_TYPE_CHOICES, primary_key=True)
+        choices=USER_TYPE_CHOICES, primary_key=True, default=1)
+
+    def __str__(self):
+        """Return Username"""
+        return self.user.username
 
 
 @receiver(post_save, sender=User)
 def create_user_role(sender, instance, created, **kwargs):
     if created:
-            Rolees.objects.create(user=instance)
+        print(instance)
+        Role.objects.create(user=instance)
+
 
 @receiver(post_save, sender=User)
-def create_user_role(sender, instance, **kwargs):
+def save_user_role(sender, instance, **kwargs):
     instance.role.save()
