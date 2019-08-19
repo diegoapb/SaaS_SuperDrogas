@@ -11,22 +11,25 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Old BASE_DIR
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+BASE_DIR = os.path.dirname(os.path.dirname(
+    os.path.dirname(os.path.abspath(__file__))))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'qfwea9cz(o490-4(w*cx4t_*j_mww3^6z+7p3ryvj-*_(v&w-*'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['.localhost']
-
 
 # Application definition
 
@@ -44,6 +47,10 @@ SHARED_APPS = (
     'django.contrib.staticfiles',
     'social_django',
 
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
     'bootstrap4',
 )
 
@@ -57,9 +64,14 @@ TENANT_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.staticfiles',
-    'social_django',
 
+    'social_django',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'bootstrap4',
+    'crispy_forms',
+
     'apps.administrador',
     'apps.mensajes',
 
@@ -67,12 +79,12 @@ TENANT_APPS = (
 
 INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
 
-TENANT_MODEL = "clientes.Cliente" # Modelo que hereda de TenantMixin
+TENANT_MODEL = "clientes.Cliente"  # Modelo que hereda de TenantMixin
 TENANT_DOMAIN_MODEL = "clientes.Dominio"  # Modelo que hereda de DomainMixin
 
 SITE_ID = 2
 MIDDLEWARE = [
-    'django_tenants.middleware.main.TenantMainMiddleware', # Necesario que este en el top de los MIDDLEWARE
+    'django_tenants.middleware.main.TenantMainMiddleware',  # Necesario que este en el top de los MIDDLEWARE
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -95,13 +107,13 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.request', # Necesario para multitenant
+                'django.template.context_processors.request',  # Necesario para multitenant
                 'django.template.context_processors.debug',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
-                'social_django.context_processors.backends',  # <--
-                'social_django.context_processors.login_redirect', # <--
+                # `allauth` needs this from django
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -109,17 +121,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'multitenant.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django_tenants.postgresql_backend',
-        'NAME': 'multitenant',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'postgres',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
         'PORT': '5432',
     }
 }
@@ -149,7 +160,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -163,39 +173,44 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+"""
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static_collected')
+"""
 
+# Static files (CSS, JavaScript, Images)
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+VENV_PATH = os.path.dirname(BASE_DIR)
+STATIC_ROOT = os.path.join(VENV_PATH, 'static_collected')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(VENV_PATH, 'media')
+
+# auth
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.github.GithubOAuth2',
-    'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.facebook.FacebookOAuth2',
-
     'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
+# SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
 
-LOGIN_URL = '/administrador/login'
-LOGOUT_URL = '/administrador/logout'
-LOGIN_REDIRECT_URL = '/administrador/dashboard'
-LOGOUT_REDIRECT_URL = '/'
-
-# Social Auth Providers
+# Social Auth Providers NO USO
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_GITHUB_KEY = 'ab4592b2a5e55d93a4b9'
 SOCIAL_AUTH_GITHUB_SECRET = '6cfe527a12e9619b2cdb0cce58ccd541770a07e8'
 SOCIAL_AUTH_FACEBOOK_KEY = '376245216421538'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = 'ad588fb09bb5d78853c55e39b96d7a0f'  # App Secret
-
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+# Fin NO USO
 
 # Testing new model for auth with abstractUser and BaseUserManager
-#AUTH_USER_MODEL = 'administrador.User'
+# AUTH_USER_MODEL = 'administrador.User'
