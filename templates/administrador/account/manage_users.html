@@ -1,0 +1,94 @@
+{% extends "administrador/account/base.html" %}
+{% block head_title %}Administrar usuarios{% endblock head_title %}
+
+{% block inner %}
+
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles">
+            <div class="col-md-6 col-8 align-self-center">
+                <h3 class="text-themecolor m-b-0 m-t-0">Table Data table</h3>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                    <li class="breadcrumb-item active">Table Data table</li>
+                </ol>
+            </div>
+            <div class="col-md-6 col-4 align-self-center">
+                <button class="right-side-toggle waves-effect waves-light btn-info btn-circle btn-sm pull-right m-l-10">
+                    <i class="ti-settings text-white"></i></button>
+                <button class="btn pull-right hidden-sm-down btn-success"><i class="mdi mdi-plus-circle"></i> Create
+                </button>
+                <div class="dropdown pull-right m-r-10 hidden-sm-down">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> January 2017
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="#">February
+                        2017</a> <a class="dropdown-item" href="#">March 2017</a> <a class="dropdown-item" href="#">April
+                        2017</a></div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">Data Export</h4>
+                        <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
+                        <div class="table-responsive m-t-40">
+                            <table id="example23" class="display nowrap table table-hover table-striped table-bordered"
+                                   cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>Nombre de usuario</th>
+                                    <th>Nombre</th>
+                                    <th>Apellidos</th>
+                                    <th>Dirección de correo electrónico</th>
+                                    <th>Rol</th>
+
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>Nombre de usuario</th>
+                                    <th>Nombre</th>
+                                    <th>Apellidos</th>
+                                    <th>Dirección de correo electrónico</th>
+                                    <th>Rol</th>
+                                </tr>
+                                </tfoot>
+                                <tbody>
+                                {% for item in object_list %}
+                                <tr>
+                                    <td>{{ item.user.username }}</td>
+                                    <td>{{ item.user.first_name }}</td>
+                                    <td>{{ item.user.last_name }}</td>
+                                    <td>{{ item.user.email }}</td>
+                                    <td>{{ item.get_user_type_display }}</td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+
+
+
+{% endblock %}

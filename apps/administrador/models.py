@@ -11,12 +11,12 @@ class Role(TimeStampedModel):
 
     USER_TYPE_CHOICES = (
         (1, 'administrador'),
-        (2, 'cliente_online'),
-        (3, 'vendedor_tpv'),
+        (2, 'vendedor_tpv'),
+        (3, 'cliente_online'),
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_type = models.PositiveSmallIntegerField(
-        choices=USER_TYPE_CHOICES, primary_key=True, default=1)
+        choices=USER_TYPE_CHOICES, primary_key=True, default=3)
 
     def __str__(self):
         """Return Username"""

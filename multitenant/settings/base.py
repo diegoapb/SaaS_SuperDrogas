@@ -45,7 +45,6 @@ SHARED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.staticfiles',
-    'social_django',
 
     'allauth',
     'allauth.account',
@@ -65,7 +64,6 @@ TENANT_APPS = (
     'django.contrib.admin',
     'django.contrib.staticfiles',
 
-    'social_django',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -211,6 +209,3 @@ SOCIAL_AUTH_FACEBOOK_KEY = '376245216421538'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = 'ad588fb09bb5d78853c55e39b96d7a0f'  # App Secret
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 # Fin NO USO
-
-# Testing new model for auth with abstractUser and BaseUserManager
-# AUTH_USER_MODEL = 'administrador.User'
