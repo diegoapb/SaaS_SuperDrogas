@@ -12,11 +12,12 @@ class Role(TimeStampedModel):
     USER_TYPE_CHOICES = (
         (1, 'Administrador'),
         (2, 'Vendedor'),
-        (3, 'Cliente Online'),
+        (3, 'Cliente online'),
     )
+    id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_type = models.PositiveSmallIntegerField(
-        choices=USER_TYPE_CHOICES, primary_key=True, default=3)
+        choices=USER_TYPE_CHOICES, default=3)
 
     def __str__(self):
         """Return Username"""
@@ -26,7 +27,6 @@ class Role(TimeStampedModel):
 @receiver(post_save, sender=User)
 def create_user_role(sender, instance, created, **kwargs):
     if created:
-        print(instance)
         Role.objects.create(user=instance)
 
 

@@ -1,12 +1,18 @@
 # Django
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView, View
+from django.shortcuts import render
+from django.views.generic import (
+    ListView,
+    CreateView,
+    View
+)
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 
 # Models
 from .models import Role
-from django.contrib.auth.models import User
+
+# Forms
+from .forms import RegisterForm
 
 
 class HomeView(View):
@@ -31,3 +37,9 @@ class UsersManagerView(LoginRequiredMixin, ListView):
     model = Role
     paginate_by = 10
     template_name = "administrador/account/manage_users.html"
+
+
+class UsersCreateView(LoginRequiredMixin, CreateView):
+    template_name = "administrador/account/create_users.html"
+    form_class = RegisterForm
+    success_url = reverse_lazy('administrador:user-manager')

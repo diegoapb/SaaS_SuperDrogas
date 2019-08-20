@@ -1,0 +1,13 @@
+{% extends "administrador/account/base.html" %}
+{% block head_title %}Crear usuarios{% endblock head_title %}
+
+{% block inner %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <button class="btn btn-primary" type="submit">Guardar</button>
+    </form>
+
+
+{% endblock %}

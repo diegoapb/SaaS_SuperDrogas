@@ -6,5 +6,6 @@ app_name = 'administrador'
 urlpatterns = [
     path('', core_views.HomeView.as_view(), name='home'),
     path('user-manager/', core_views.UsersManagerView.as_view(), name='user-manager'),
+    path('create-user/', core_views.UsersCreateView.as_view(), name='create-user'),
 
 ]
