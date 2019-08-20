@@ -18,6 +18,6 @@ urlpatterns = [
     path('product-manager/', core_views.ProductManagerView.as_view(), name='product-manager'),
     path('create-product/', core_views.ProductCreateView.as_view(), name='create-product'),
 
-    path('product/<slug>/', core_views.DetailView.as_view(), name='product-ecommerce'),
+    path('product/<slug>/', core_views.ItemDetailView.as_view(), name='product-ecommerce'),
 
 ]
