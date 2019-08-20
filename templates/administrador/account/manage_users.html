@@ -120,20 +120,30 @@
 										<td>{{ item.user.email }}</td>
 										<td>
 											<a href="{% url 'administrador:update-role' item.id %}">
-												<span class="label label-danger">
+												{% if item.user_type == 1 %}
+													<span class="label label-danger">
 													{{ item.get_user_type_display }}
 												</span>
+												{% elif item.user_type == 2 %}
+													<span class="label label-info">
+													{{ item.get_user_type_display }}
+												</span>
+												{% elif item.user_type == 3 %}
+													<span class="label label-purple">
+													{{ item.get_user_type_display }}
+												</span>
+												{% endif %}
 											</a>
 										</td>
 										<td>
 											<a href="{% url 'administrador:delete-user' item.user.id %}">
-											<button type="button"
-															class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn"
-															data-toggle="tooltip" data-original-title="Delete">
-												<i class="ti-close"
-													 aria-hidden="true">
-												</i>
-											</button>
+												<button type="button"
+																class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn"
+																data-toggle="tooltip" data-original-title="Delete">
+													<i class="ti-close"
+														 aria-hidden="true">
+													</i>
+												</button>
 											</a>
 										</td>
 									</tr>
