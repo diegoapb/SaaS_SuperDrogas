@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.conf import settings
+from django.urls import reverse
 
 CATEGORY_CHOICES = (
     ('S', 'Shirt'),
@@ -55,6 +56,14 @@ class Item(models.Model):
     label = models.CharField(choices=LABEL_CHOICES, max_length=1)
     slug = models.SlugField()
     description = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("administrador:product-ecommerce", kwargs={
+            'slug': self.slug
+        })
 
 
 class OrderItem(models.Model):

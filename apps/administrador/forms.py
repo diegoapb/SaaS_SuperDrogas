@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from django.contrib.auth.models import User
-from .models import Role
+from .models import Role, Item
 
 
 class RegisterForm(UserCreationForm):
@@ -27,3 +27,11 @@ class UserForm(UserChangeForm):
         model = User
         fields = ("username", "email", "first_name", "last_name")
         exclude = ("username", "password")
+
+
+# Ecommerce
+
+class ItemsForm(forms.ModelForm):
+    class Meta:
+        model = Item
+        fields = '__all__'

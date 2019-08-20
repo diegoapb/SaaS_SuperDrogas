@@ -1,15 +1,11 @@
 {% extends "administrador/account/base.html" %}
-{% block head_title %}Administrar usuarios{% endblock head_title %}
+{% block head_title %}Administrar productos{% endblock head_title %}
 {% load crispy_forms_tags %}
 {% block inner %}
 
-	<!-- ============================================================== -->
-	<!-- Container fluid  -->
-	<!-- ============================================================== -->
+
 	<div class="container-fluid">
-		<!-- ============================================================== -->
-		<!-- Bread crumb and right sidebar toggle -->
-		<!-- ============================================================== -->
+
 		<div class="row page-titles">
 			<div class="col-md-6 col-8 align-self-center">
 				<h3 class="text-themecolor m-b-0 m-t-0">Tabla</h3>
@@ -28,7 +24,7 @@
 			<div class="col-12">
 				<div class="card">
 					<div class="card-block">
-						<h4 class="card-title">Usuarios</h4>
+						<h4 class="card-title">Productos</h4>
 						<h6 class="card-subtitle"></h6>
 						<div class="table-responsive">
 							<table id="demo-foo-addrow" class="table m-t-30 table-hover contact-list"
@@ -36,50 +32,24 @@
 								<thead>
 								<tr>
 									<th>#</th>
-									<th>Nombre de usuario</th>
-									<th>Nombre</th>
-									<th>Apellidos</th>
-									<th>Dirección de correo electrónico</th>
-									<th>Rol</th>
+									<th>Titulo</th>
+									<th>Precio</th>
+									<th>Precio en descuento</th>
+									<th>Categoria</th>
 								</tr>
 								</thead>
 								<tbody>
-
 								{% for item in object_list %}
 									<tr>
-										{% comment %}{% if item.user.username != request.user.username %}{% endcomment %}
 										<td>{{ forloop.counter }}</td>
-
 										<td>
-											<a href="{% url 'administrador:update-user' item.user.id %}">
-												{% comment %}<img src="../assets/images/users/4.jpg"
-														 alt="user-img" width="40"
-														 class="img-circle"/>{% endcomment %}
-												{{ item.user.username }}
-											</a>
+											{{ item.title }}
 										</td>
-										<td>{{ item.user.first_name }}</td>
-										<td>{{ item.user.last_name }}</td>
-										<td>{{ item.user.email }}</td>
+										<td>{{ item.price }}</td>
+										<td>{{ item.discount_price }}</td>
+										<td>{{ item.get_category_display }}</td>
 										<td>
-											<a href="{% url 'administrador:update-role' item.id %}">
-												{% if item.user_type == 1 %}
-													<span class="label label-danger">
-													{{ item.get_user_type_display }}
-												</span>
-												{% elif item.user_type == 2 %}
-													<span class="label label-info">
-													{{ item.get_user_type_display }}
-												</span>
-												{% elif item.user_type == 3 %}
-													<span class="label label-purple">
-													{{ item.get_user_type_display }}
-												</span>
-												{% endif %}
-											</a>
-										</td>
-										<td>
-											<a href="{% url 'administrador:delete-user' item.user.id %}">
+											<a href="{% comment %}{% url 'administrador:delete-user' item.user.id %}{% endcomment %}#">
 												<button type="button"
 																class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn"
 																data-toggle="tooltip" data-original-title="Delete">
@@ -90,14 +60,13 @@
 											</a>
 										</td>
 									</tr>
-									{% comment %}{% endif %}{% endcomment %}
 								{% endfor %}
 								</tbody>
 								<tfoot>
 								<tr>
 									<td colspan="2">
 										<button type="button" class="btn btn-info btn-rounded" data-toggle="modal"
-														data-target="#add-contact">Nuevo usuario
+														data-target="#add-contact">Agregar producto
 										</button>
 									</td>
 									<div id="add-contact" class="modal fade in" tabindex="-1" role="dialog"
@@ -108,16 +77,16 @@
 													<button type="button" class="close" data-dismiss="modal"
 																	aria-hidden="true">×
 													</button>
-													<h4 class="modal-title" id="myModalLabel">Nuevo usuario</h4></div>
+													<h4 class="modal-title" id="myModalLabel">Agregar</h4></div>
 												<div class="modal-body">
-													<form class="form-horizontal form-material" method="post"
-																action="{% url 'administrador:create-user' %}">
+														<form class="form-horizontal form-material" method="post"
+																action="{% url 'administrador:create-product' %}">
 														{% csrf_token %}
-														{{ form_register|crispy }}
+														{{ form_products|crispy }}
 
 														<div class="modal-footer">
 															<button type="submit" class="btn btn-info waves-effect">
-																Crear Usuario
+																Crear Producto
 															</button>
 															<button type="button" class="btn btn-default waves-effect"
 																			data-dismiss="modal">Cancelar
