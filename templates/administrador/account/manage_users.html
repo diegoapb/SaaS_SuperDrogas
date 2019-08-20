@@ -69,13 +69,15 @@
                                 </tfoot>
                                 <tbody>
                                 {% for item in object_list %}
-                                <tr>
-                                    <td>{{ item.user.username }}</td>
-                                    <td>{{ item.user.first_name }}</td>
-                                    <td>{{ item.user.last_name }}</td>
-                                    <td>{{ item.user.email }}</td>
-                                    <td>{{ item.get_user_type_display }}</td>
-                                </tr>
+                                    {% if item.user.username != request.user.username %}
+                                        <tr>
+                                            <td>{{ item.user.username }}</td>
+                                            <td>{{ item.user.first_name }}</td>
+                                            <td>{{ item.user.last_name }}</td>
+                                            <td>{{ item.user.email }}</td>
+                                            <td>{{ item.get_user_type_display }}</td>
+                                        </tr>
+                                    {% endif %}
                                 {% endfor %}
                                 </tbody>
                             </table>

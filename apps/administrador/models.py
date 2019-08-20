@@ -10,9 +10,9 @@ from django.dispatch import receiver
 class Role(TimeStampedModel):
 
     USER_TYPE_CHOICES = (
-        (1, 'administrador'),
-        (2, 'vendedor_tpv'),
-        (3, 'cliente_online'),
+        (1, 'Administrador'),
+        (2, 'Vendedor'),
+        (3, 'Cliente Online'),
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_type = models.PositiveSmallIntegerField(
