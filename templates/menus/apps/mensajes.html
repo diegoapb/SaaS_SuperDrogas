@@ -1,8 +1,8 @@
 {% url 'mensajes:registrar' as registrar %}
-<li class="nav-item {% if registrar in request.path %}active{% endif %}">
-    <a class="nav-link" href="{{ registrar }}">
-        <i class="menu-icon mdi mdi-clipboard"></i>
+
+    <a class="nav-link {% if registrar in request.path %}active{% endif %}" href="{{ registrar }}">
+        <i class="fas fa-envelope"></i>
         <span class="menu-title">Mensajes</span>
     </a>
-</li>
+
 

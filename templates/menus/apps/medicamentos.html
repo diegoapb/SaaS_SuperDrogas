@@ -1,0 +1,24 @@
+{% url 'mensajes:registrar' as registrar %}
+{% url 'medicamentos:crear_medicamentos' as crear_medicamentos %}
+{% url 'medicamentos:listar_medicamentos' as listar_medicamentos %}
+
+
+    <div  class="nav-item {% if crear_medicamentos or listar_medicamentos  in request.path %}active{% endif %} " >
+                <i class="fas fa-capsules"></i>
+              <span class="site-menu-title">Medicamentos </span>
+               <span class="site-menu-arrow"></span>
+                <ul class="site-menu-sub">
+                 <li class="site-menu-item">
+                    <a class="animsition-link" href="{{ crear_medicamentos }}">
+                      <span class="site-menu-title">Registrar medicamento</span>
+                    </a>
+                  </li>
+
+                  <li class="site-menu-item">
+                    <a class="animsition-link" href="{{ listar_medicamentos }}">
+                      <span class="site-menu-title">Ver los medicamentos</span>
+                    </a>
+                  </li>
+                    </li>
+                </ul>
+</div>

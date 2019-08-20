@@ -1,0 +1,53 @@
+{% extends 'base.html'%}
+
+{% block page_title %}
+    MEDICAMENTOS
+{% endblock page_title %}
+
+{% block content %}
+  {% if medicamentos %}
+      <div class="card">
+          <div class="card-header">
+              <strong class="card-title">Listado de Medicamentos</strong>
+          </div>
+          <div class="table-responsive">
+              <table  class="table table-bordered data-combine">
+                  <thead>
+                      <tr>
+                        <th>ID del Medicamentos</th>
+                        <th>Nombre</th>
+                        <th>laboratorio</th>
+                        <th>descripcion</th>
+                        <th>cantidad</th>
+                          <th>precio</th>
+                          <th>imagen</th>
+                        <th></th>
+
+                      </tr>
+                  </thead>
+                  <tbody>
+                   {% for medicamentos in medicamentos %}
+		            <tr>
+
+		            <td>{{medicamentos.idMedicamentos}}</td>
+			        <td>{{medicamentos.nombre}}</td>
+			        <td>{{medicamentos.laboratorio}}</td>
+			        <td>{{medicamentos.descripcion}}</td>
+                    <td>{{medicamentos.cantidad}}</td>
+                        <td>{{medicamentos.precio}}</td>
+                        <td>{{medicamentos.imagen}}</td>
+                    <td>
+                          <a href="{% url 'medicamentos:editar_medicamentos' medicamentos.idMedicamentos%}" class="btn btn-primary">Editar</a>
+                          <a href="{% url 'medicamentos:eliminar_medicamentos' medicamentos.idMedicamentos %}" class="btn btn-danger">Eliminar</a>
+                        </td>
+                   {% endfor %}
+		            </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+      {% else %}
+        <h1>No existen Medicamentos Registrados :( </h1>
+      {% endif %}
+
+{% endblock content %}

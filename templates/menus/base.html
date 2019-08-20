@@ -1,7 +1,11 @@
-<li class="nav-item">
+<nav class="nav flex-column">
     {% if request.tenant.schema_name == 'public' %}
         {% include 'menus/apps/clientes.html' %}
     {% else %}
         {% include 'menus/apps/mensajes.html' %}
+        {% include 'menus/apps/vendedores.html' %}
+        {% include 'menus/apps/clientesOnline.html' %}
+        {% include 'menus/apps/medicamentos.html' %}
     {% endif %}
-</li>
+
+</nav>

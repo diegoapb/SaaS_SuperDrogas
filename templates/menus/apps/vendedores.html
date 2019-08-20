@@ -1,0 +1,24 @@
+{% url 'mensajes:registrar' as registrar %}
+{% url 'vendedorTienda:crear_vendedor' as crear_vendedor %}
+{% url 'vendedorTienda:listar_vendedores' as listar_vendedores %}
+
+
+    <div  class="nav-item {% if crear_vendedor or listar_vendedores  in request.path %}active{% endif %} " >
+                <i class="fas fa-user-tag " aria-hidden="true"></i>
+              <span class="site-menu-title">Vendedores de Tienda</span>
+               <span class="site-menu-arrow"></span>
+                <ul class="site-menu-sub">
+                 <li class="site-menu-item">
+                    <a class="animsition-link" href="{{ crear_vendedor }}">
+                      <span class="site-menu-title">Registrar un vendedor</span>
+                    </a>
+                  </li>
+
+                  <li class="site-menu-item">
+                    <a class="animsition-link" href="{{ listar_vendedores }}">
+                      <span class="site-menu-title">Ver los vendedores</span>
+                    </a>
+                  </li>
+                    </li>
+                </ul>
+</div>

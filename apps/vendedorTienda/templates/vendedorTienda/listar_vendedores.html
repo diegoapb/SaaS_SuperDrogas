@@ -1,0 +1,49 @@
+{% extends 'base.html'%}
+
+{% block page_title %}
+    VENDEDORES
+{% endblock page_title %}
+
+{% block content %}
+  {% if vendedores %}
+      <div class="card">
+          <div class="card-header">
+              <strong class="card-title">Listado de Vendedores</strong>
+          </div>
+          <div class="table-responsive">
+              <table  class="table table-bordered data-combine">
+                  <thead>
+                      <tr>
+                        <th>ID del vendedor</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Cédula</th>
+                        <th>Dirección</th>
+                        <th></th>
+
+                      </tr>
+                  </thead>
+                  <tbody>
+                   {% for vendedor in vendedores %}
+		            <tr>
+
+		            <td>{{vendedor.id}}</td>
+			        <td>{{vendedor.nombre}}</td>
+			        <td>{{vendedor.apellidos}}</td>
+			        <td>{{vendedor.cedula}}</td>
+                    <td>{{vendedor.direccion}}</td>
+                    <td>
+                          <a href="{% url 'vendedorTienda:editar_vendedor' vendedor.id %}" class="btn btn-primary">Editar</a>
+                          <a href="{% url 'vendedorTienda:eliminar_vendedor' vendedor.id %}" class="btn btn-danger">Eliminar</a>
+                        </td>
+                   {% endfor %}
+		            </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+      {% else %}
+        <h1>No existen vendedores Registrados :( </h1>
+      {% endif %}
+
+{% endblock content %}

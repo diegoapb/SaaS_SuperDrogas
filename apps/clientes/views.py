@@ -76,7 +76,6 @@ def modificar_cliente(request, id_cliente):
 def login_view(request):
     next = request.GET.get('')
     form = UserLoginForm(request.POST or None)
-    print("111111111111")
     if form.is_valid():
         username = form.cleaned_data.get('username')
         password = form.cleaned_data.get('password')

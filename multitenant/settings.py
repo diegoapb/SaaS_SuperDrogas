@@ -60,6 +60,9 @@ TENANT_APPS = (
     'bootstrap4',
 
     'apps.mensajes',
+    'apps.vendedorTienda',
+    'apps.clientesOnline',
+    'apps.medicamentos',
 
 )
 

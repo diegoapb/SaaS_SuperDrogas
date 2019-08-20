@@ -1,0 +1,25 @@
+{% url 'mensajes:registrar' as registrar %}
+
+{% url 'clientesOnline:listar_clientesOnline' as listar_clientesOnline %}
+{% url 'clientesOnline:crear_clientesOnline' as crear_clientesOnline %}
+
+
+    <div  class="nav-item {% if crear_clientesOnline or listar_clientesOnline  in request.path %}active{% endif %} " >
+                <i class="fas fa-address-book"></i>
+              <span class="site-menu-title">Clientes Online </span>
+               <span class="site-menu-arrow"></span>
+                <ul class="site-menu-sub">
+                 <li class="site-menu-item">
+                    <a class="animsition-link" href="{{ crear_clientesOnline }}">
+                      <span class="site-menu-title">Registrar un Cliente Online</span>
+                    </a>
+                  </li>
+
+                  <li class="site-menu-item">
+                    <a class="animsition-link" href="{{ listar_clientesOnline }}">
+                      <span class="site-menu-title">Ver a todos los Clientes Online</span>
+                    </a>
+                  </li>
+                    </li>
+                </ul>
+</div>

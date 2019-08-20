@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block page_title %}
+  Eliminar Medicamentos
+{% endblock page_title %}
+{% block content %}
+<form method="POST">
+  {% csrf_token %}
+  <h2>¿Estas seguro de eliminar a {{object.nombre}} ?</h2>
+    <button type = "submit" class="btn btn-danger">Eliminar</button>
+
+    <a href="{% url 'medicamentos:listar_medicamentos' %}" class="btn btn-info">Cancelar</a>
+</form>
+
+{% endblock content %}

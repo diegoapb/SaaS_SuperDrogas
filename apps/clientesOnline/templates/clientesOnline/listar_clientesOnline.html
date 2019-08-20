@@ -1,0 +1,53 @@
+{% extends 'base.html'%}
+
+{% block page_title %}
+    CLIENTE ONLINE
+{% endblock page_title %}
+
+{% block content %}
+  {% if clientesOnline %}
+      <div class="card">
+          <div class="card-header">
+              <strong class="card-title">Listado de Los Clientes Online</strong>
+          </div>
+          <div class="table-responsive">
+              <table  class="table table-bordered data-combine">
+                  <thead>
+                      <tr>
+                        <th>ID del cliente online</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Cédula</th>
+                        <th>Email</th>
+                          <th>nickname</th>
+                          <th>Fecha de Creación</th>
+                        <th></th>
+
+                      </tr>
+                  </thead>
+                  <tbody>
+                   {% for clienteOnline in clientesOnline %}
+		            <tr>
+
+		            <td>{{clienteOnline.idClienteOnline}}</td>
+			        <td>{{clienteOnline.nombre}}</td>
+			        <td>{{clienteOnline.apellidos}}</td>
+			        <td>{{clienteOnline.cedula}}</td>
+                    <td>{{clienteOnline.email}}</td>
+                        <td>{{clienteOnline.nickname}}</td>
+                        <td>{{clienteOnline.fechaCreacion}}</td>
+                    <td>
+                          <a href="{% url 'clientesOnline:editar_clientesOnline' clienteOnline.idClienteOnline %}" class="btn btn-primary">Editar</a>
+                          <a href="{% url 'clientesOnline:eliminar_clientesOnline' clienteOnline.idClienteOnline %}" class="btn btn-danger">Eliminar</a>
+                        </td>
+                   {% endfor %}
+		            </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+      {% else %}
+        <h1>No existen Cliente Online :( </h1>
+      {% endif %}
+
+{% endblock content %}

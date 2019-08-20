@@ -1,0 +1,71 @@
+{% extends 'base.html'%}
+
+{% load bootstrap4 %}
+{% block page_title %}
+Crear un Medicamentos
+{% endblock page_title%}
+
+
+
+<body>
+	<form action=""method="post">
+		{% csrf_token %}
+		{{form.as_p}}
+		<button type="submit">Crear un Medicamentos</button>
+	</form>
+
+</body>
+</html>
+
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    {% if error %}
+    <h2>{{ error }}</h2>
+    {% else %}
+    <div class="card-title">
+          <div class="card-header">
+              <strong>Crear Medicamentos</strong>
+          </div>
+          <div class="card-body card-block">
+              <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal">
+                  <div class="row form-group">
+                      <div class="col col-md-3">{{ form.idMedicamentos.label}}</div>
+                      <div class="col-12 col-md-9">{{ form.idMedicamentos}}</div>
+                  </div>
+                  <div class="row form-group">
+                      <div class="col col-md-3">{{ form.nombre.label}}</div>
+                      <div class="col-12 col-md-9">{{ form.nombre}} </div>
+                  </div>
+                  <div class="row form-group">
+                      <div class="col col-md-3">{{ form.laboratorio.label}}</div>
+                      <div class="col-12 col-md-9">{{ form.laboratorio}}</div>
+                  </div>
+                  <div class="row form-group">
+                      <div class="col col-md-3">{{ form.descripcion.label}}</div>
+                      <div class="col-12 col-md-9">{{ form.descripcion}}</div>
+                  </div>
+                  <div class="row form-group">
+                      <div class="col col-md-3">{{ form.cantidad.label}}</div>
+                      <div class="col-12 col-md-9">{{ form.cantidad}} </div>
+                  </div>
+                  <div class="row form-group">
+                      <div class="col col-md-3">{{ form.precio.label}}</div>
+                      <div class="col-12 col-md-9">{{ form.precio}}</div>
+                  </div>
+                  <div class="row form-group">
+                      <div class="col col-md-3">{{ form.imagen.label}}</div>
+                      <div class="col-12 col-md-9">{{ form.imagen}}</div>
+                  </div>
+                  <div class="text-center">
+                      <button type="submit" class="btn btn-primary">Crear Medicamento</button>
+                      <button type="reset" class="btn btn-danger">Cancelar</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  {% endif %}
+</form>
+
+{% endblock content %}

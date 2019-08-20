@@ -3,154 +3,430 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{% block page_title %}{% endblock %}</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="{% static 'vendors/iconfonts/mdi/css/materialdesignicons.min.css' %}">
-    <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
-    <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.addons.css' %}">
-    <!-- endinject -->
-    <!-- plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- notifications -->
-    <link rel="stylesheet" href="{% static 'vendors/toast/toastr/toastr.min.css' %}">
-    {% block css %}
-    {% endblock css %}
-    <!-- endinject -->
-    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/images/favicon.png' %}">
+    <title>{% block page_title %}..Bienvenido.. {% endblock page_title %}</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/a0ab318867.js"></script>
+    <!-- chartist CSS -->
+    <link href="{% static 'assets/plugins/chartist-js/dist/chartist.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/chartist-js/dist/chartist-init.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/css-chart/css-chart.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'css1/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/DataTables/AutoFill-2.3.3/css/autoFill.bootstrap4.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/DataTables/Buttons-1.5.6/css/buttons.bootstrap4.min.css' %}"/>
+    <!-- You can change the theme colors from here -->
+    <link href="{% static 'css1/colors/blue.css' %}" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
 
-<body>
-    <div class="container-scroller">
-        <!-- partial:../../partials/_navbar.html -->
-        <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-            <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-                <a class="navbar-brand brand-logo" href="{% url 'home' %}">
-                    <img src="{% static 'images/logo.svg' %}" alt="logo"/>
-                </a>
-                <a class="navbar-brand brand-logo-mini" href="{% url 'home' %}">
-                    <img src="{% static 'images/logo-mini.svg' %}" alt="logo"/>
-                </a>
-            </div>
-            <div class="navbar-menu-wrapper d-flex align-items-center">
-                <ul class="navbar-nav navbar-nav-right">
-                    <li class="nav-item dropdown d-none d-xl-inline-block">
-                        <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown"
-                           aria-expanded="false">
-                            <span class="profile-text">Richard V.Welsh</span>
-                            <img class="img-xs rounded-circle" src="{% static 'images/faces/face1.jpg' %}"
-                                 alt="Profile image">
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-                            <a class="dropdown-item">
-                                Cambiar contraseña
-                            </a>
-                            <a class="dropdown-item">
-                                Cerrar sesión
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-                        data-toggle="offcanvas">
-                    <span class="mdi mdi-menu"></span>
-                </button>
-            </div>
-        </nav>
-        <!-- partial -->
-        <div class="container-fluid page-body-wrapper">
-            <!-- partial:../../partials/_sidebar.html -->
-
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                <ul class="nav">
-                    <li class="nav-item nav-profile">
-                        <div class="nav-link">
-                            <div class="user-wrapper">
-                                <div class="profile-image">
-                                    <img src="{% static 'images/faces/face1.jpg' %}" alt="profile image">
-                                </div>
-                                <div class="text-wrapper">
-                                    <p class="profile-name">Richard V.Welsh</p>
-                                    <div>
-                                        <small class="designation text-muted">Manager</small>
-                                        <span class="status-indicator online"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    {% include 'menus/base.html' %}
-                </ul>
-            </nav>
-
-            <!-- partial -->
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    {% block content %}
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">{% block card_title %}Bienvenido al tenant: <b>{{ request.tenant }}</b>{% endblock %}</h4>
-                                        <hr>
-                                        {% block card_content %}{% endblock %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endblock %}
-                </div>
-                <!-- content-wrapper ends -->
-                <!-- partial:../../partials/_footer.html -->
-                <footer class="footer">
-                    <div class="container-fluid clearfix">
-                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
-                  <a href="http://www.bootstrapdash.com/" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with
-                  <i class="mdi mdi-heart text-danger"></i>
-                </span>
-                    </div>
-                </footer>
-                <!-- partial -->
-            </div>
-            <!-- main-panel ends -->
-        </div>
-        <!-- page-body-wrapper ends -->
+<body class="fix-header fix-sidebar card-no-border">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
-    <script src="{% static 'vendors/js/vendor.bundle.addons.js' %}"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page-->
-    <!-- End plugin js for this page-->
-    <!-- inject:js -->
-    <script src="{% static 'js/off-canvas.js' %}"></script>
-    <script src="{% static 'js/misc.js' %}"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <!-- notifications -->
-    <script src="{% static 'vendors/toast/toastr-js/toastr.min.js' %}"></script>
-    <script>
-        {% for msg in messages %}
-            $(document).ready(function(){
-                setTimeout(function() {
-                    toastr.options = {
-                        "closeButton": true,
-                        "progressBar": true,
-                        "showEasing": "swing"
-                    }
-                    toastr["{{ msg.tags }}"]("{{msg}}")
-                },500);
-            });
-        {% endfor %}
-    </script>
-    {% block js %}
-    {% endblock %}
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">
+                <!-- ============================================================== -->
+                <!-- Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="">
+                        <!-- Logo icon -->
+                        <b>
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="{% static 'assets/images/logo-icon.png' %}" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo icon -->
+                            <img src="{% static 'assets/images/logo-light-icon.png' %}" alt="homepage" class="light-logo" />
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span>
+                         <!-- dark Logo text -->
+                         <img src="{% static 'assets/images/logo-text.png' %}" alt="homepage" class="dark-logo" />
+                         <!-- Light Logo text -->
+                         <img src="{% static 'assets/images/logo-light-text.png' %}" class="light-logo" alt="homepage" /></span> </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto mt-md-0 ">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="icon-arrow-left-circle"></i></a> </li>
+                        <!-- ============================================================== -->
+                        <!-- Comment -->
+                        <!-- ============================================================== -->
+
+                        <!-- ============================================================== -->
+                        <!-- End Comment -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Messages -->
+                        <!-- ============================================================== -->
+
+                        <!-- ============================================================== -->
+                        <!-- End Messages -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Messages -->
+                        <!-- ============================================================== -->
+
+                        <!-- ============================================================== -->
+                        <!-- End Messages -->
+                        <!-- ============================================================== -->
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav my-lg-0">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'assets/images/users/1.jpg' %}" alt="user" class="profile-pic" /></a>
+                            <div class="dropdown-menu dropdown-menu-right animated flipInY">
+                                <ul class="dropdown-user">
+                                    <li>
+                                        <div class="dw-user-box">
+                                            <div class="u-img"><img src="{% static 'assets/images/users/1.jpg' %}" alt="user"></div>
+                                            <div class="u-text">
+                                                <h4>Steave Jobs</h4>
+                                                <p class="text-muted">varun@gmail.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                                        </div>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+                                    <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
+                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- User profile -->
+            {% include 'menus/base.html' %}
+
+            </div>
+            <!-- End Sidebar scroll-->
+            <!-- Bottom points-->
+            <div class="sidebar-footer">
+
+                <!-- item-->
+                <a href="" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
+            </div>
+            <!-- End Bottom points-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                {% block content %}
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <h3 class="text-themecolor m-b-0 m-t-0">ADMINISTRADOR DE LA FRANQUISIA</h3>
+
+                    </div>
+
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-3 col-xlg-3">
+                        <div class="card card-inverse card-info">
+                            <div class="box bg-info text-center">
+                                <h1 class="font-light text-white">2,064</h1>
+                                <h6 class="text-white">Sesiones</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-3 col-xlg-3">
+                        <div class="card card-primary card-inverse">
+                            <div class="box text-center">
+                                <h1 class="font-light text-white">1,738</h1>
+                                <h6 class="text-white">Usuarios</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-3 col-xlg-3">
+                        <div class="card card-inverse card-success">
+                            <div class="box text-center">
+                                <h1 class="font-light text-white">5963</h1>
+                                <h6 class="text-white">Visitas a la Página</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                <!-- Row -->
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="p-20">
+                                        <!-- Inicio la pagina -->
+                                        <h2 class="font-medium text-inverse">Welcome Steave</h2>
+                                        <h6 class="card-subtitle">tu 4 new messages</h6>
+                                        <div class="message-box m-t-30">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                <!-- Row -->
+
+                <!-- Row -->
+
+                    <!-- col -->
+
+                    <!-- col -->
+
+                <!-- Row -->
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card earning-widget">
+                            <div class="card-block">
+
+                            </div>
+                            <div class="card-block b-t">
+                                <table class="table v-middle no-border">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width:40px"><img src="{% static 'assets/images/users/1.jpg' %}" width="50" class="img-circle" alt="logo"></td>
+                                            <td>Andrew Simon</td>
+                                            <td class="text-right"><span class="label label-light-info">$2300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="{% static 'assets/images/users/2.jpg' %}" width="50" class="img-circle" alt="logo"></td>
+                                            <td>Daniel Kristeen</td>
+                                            <td class="text-right"><span class="label label-light-success">$3300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="{% static 'assets/images/users/3.jpg' %}" width="50" class="img-circle" alt="logo"></td>
+                                            <td>Dany John</td>
+                                            <td class="text-right"><span class="label label-light-primary">$4300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="{% static 'assets/images/users/4.jpg' %}" width="50" class="img-circle" alt="logo"></td>
+                                            <td>Chris gyle</td>
+                                            <td class="text-right"><span class="label label-light-warning">$5300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="{% static 'assets/images/users/5.jpg' %}" width="50" class="img-circle" alt="logo"></td>
+                                            <td>Opera mini</td>
+                                            <td class="text-right"><span class="label label-light-danger">$4567</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="{% static 'assets/images/users/6.jpg' %}" width="50" class="img-circle" alt="logo"></td>
+                                            <td>Microsoft edge</td>
+                                            <td class="text-right"><span class="label label-light-megna">$7889</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                {%endblock content %}
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <div class="right-sidebar">
+                    <div class="slimscrollright">
+                        <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+                        <div class="r-panel-body">
+                            <ul id="themecolors" class="m-t-20">
+                                <li><b>With Light sidebar</b></li>
+                                <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
+                                <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
+                                <li><a href="javascript:void(0)" data-theme="red" class="red-theme">3</a></li>
+                                <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme working">4</a></li>
+                                <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
+                                <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
+                                <li class="d-block m-t-30"><b>With Dark sidebar</b></li>
+                                <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a></li>
+                                <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
+                                <li><a href="javascript:void(0)" data-theme="red-dark" class="red-dark-theme">9</a></li>
+                                <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a></li>
+                                <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a></li>
+                                <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme ">12</a></li>
+                            </ul>
+                            <ul class="m-t-20 chatonline">
+                                <li><b>Chat option</b></li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="{% static 'assets/images/users/1.jpg' %}" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="{% static 'assets/images/users/2.jpg' %}" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="{% static 'assets/images/users/3.jpg' %}" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="{% static 'assets/images/users/4.jpg' %}" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="{% static 'assets/images/users/5.jpg' %}" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="{% static 'assets/images/users/6.jpg' %}" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="{% static 'assets/images/users/7.jpg' %}" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="{% static 'assets/images/users/8.jpg' %}" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer">
+                © 2017 Monster Admin by wrappixel.com
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{% static 'assets/plugins/bootstrap/js/tether.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="{% static 'js1/jquery.slimscroll.js' %}"></script>
+    <!--Wave Effects -->
+    <script src="{% static 'js1/waves.js' %}"></script>
+    <!--Menu sidebar -->
+    <script src="{% static 'js1/sidebarmenu.js' %}"></script>
+    <!--stickey kit -->
+    <script src="{% static 'assets/plugins/sticky-kit-master/dist/sticky-kit.min.js' %}"></script>
+    <!--Custom JavaScript -->
+    <script src="{% static 'js1/custom.min.js' %}"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+    <!-- chartist chart -->
+    <script src="{% static 'assets/plugins/chartist-js/dist/chartist.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js' %}"></script>
+    <!-- Chart JS -->
+    <script src="{% static 'assets/plugins/Chart.js/Chart.min.js' %}"></script>
+    <script src="{% static 'js1/dashboard2.js' %}"></script>
+    <!-- ============================================================== -->
+    <!-- Style switcher -->
+    <!-- ============================================================== -->
+    <script src="{% static 'assets/plugins/styleswitcher/jQuery.style.switcher.js' %}"></script>
+
+    <script  src="{% static 'vendors/DataTables/JSZip-2.5.0/jszip.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/pdfmake-0.1.36/pdfmake.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/pdfmake-0.1.36/vfs_fonts.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/DataTables-1.10.18/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/AutoFill-2.3.3/js/dataTables.autoFill.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/AutoFill-2.3.3/js/autoFill.bootstrap4.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/Buttons-1.5.6/js/dataTables.buttons.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/Buttons-1.5.6/js/buttons.bootstrap4.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/Buttons-1.5.6/js/buttons.colVis.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/Buttons-1.5.6/js/buttons.html5.min.js' %}"></script>
+    <script  src="{% static 'vendors/DataTables/Buttons-1.5.6/js/buttons.print.min.js' %}"></script>
+    <script  src="{% static 'vendors/js/apps/tabla-datos.js' %}"></script>
+
     <!-- End custom js for this page-->
 </body>
 
