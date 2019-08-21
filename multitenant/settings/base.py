@@ -70,6 +70,7 @@ TENANT_APPS = (
     'bootstrap4',
     'crispy_forms',
 
+    'apps.usuarios',
     'apps.administrador',
     'apps.ecommerce',
     'apps.mensajes',
