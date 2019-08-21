@@ -5,18 +5,19 @@ from model_utils.models import TimeStampedModel
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.conf import settings
 
 
 class Role(TimeStampedModel):
-
     USER_TYPE_CHOICES = (
-        (1, 'administrador'),
-        (2, 'cliente_online'),
-        (3, 'vendedor_tpv'),
+        (1, 'Administrador'),
+        (2, 'Vendedor'),
+        (3, 'Cliente online'),
     )
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     user_type = models.PositiveSmallIntegerField(
-        choices=USER_TYPE_CHOICES, primary_key=True, default=1)
+        choices=USER_TYPE_CHOICES, default=3)
 
     def __str__(self):
         """Return Username"""
@@ -26,7 +27,6 @@ class Role(TimeStampedModel):
 @receiver(post_save, sender=User)
 def create_user_role(sender, instance, created, **kwargs):
     if created:
-        print(instance)
         Role.objects.create(user=instance)
 
 

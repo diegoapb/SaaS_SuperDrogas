@@ -1,0 +1,156 @@
+{% extends "administrador/account/base.html" %}
+{% block head_title %}Administrar usuarios{% endblock head_title %}
+{% load crispy_forms_tags %}
+{% block inner %}
+
+	<!-- ============================================================== -->
+	<!-- Container fluid  -->
+	<!-- ============================================================== -->
+	<div class="container-fluid">
+		<!-- ============================================================== -->
+		<!-- Bread crumb and right sidebar toggle -->
+		<!-- ============================================================== -->
+		<div class="row page-titles">
+			<div class="col-md-6 col-8 align-self-center">
+				<h3 class="text-themecolor m-b-0 m-t-0">Tabla</h3>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="{% url 'administrador:home' %}">Inicio</a></li>
+					<li class="breadcrumb-item active">Tabla</li>
+				</ol>
+			</div>
+			<div class="col-md-6 col-4 align-self-center">
+				<button class="right-side-toggle waves-effect waves-light btn-info btn-circle btn-sm pull-right m-l-10">
+					<i class="ti-settings text-white"></i></button>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-block">
+						<h4 class="card-title">Usuarios</h4>
+						<h6 class="card-subtitle"></h6>
+						<div class="table-responsive">
+							<table id="demo-foo-addrow" class="table m-t-30 table-hover contact-list"
+										 data-page-size="10">
+								<thead>
+								<tr>
+									<th>#</th>
+									<th>Nombre de usuario</th>
+									<th>Nombre</th>
+									<th>Apellidos</th>
+									<th>Dirección de correo electrónico</th>
+									<th>Rol</th>
+								</tr>
+								</thead>
+								<tbody>
+
+								{% for item in object_list %}
+									<tr>
+										{% comment %}{% if item.user.username != request.user.username %}{% endcomment %}
+										<td>{{ forloop.counter }}</td>
+
+										<td>
+											<a href="{% url 'administrador:update-user' item.user.id %}">
+												{% comment %}<img src="../assets/images/users/4.jpg"
+														 alt="user-img" width="40"
+														 class="img-circle"/>{% endcomment %}
+												{{ item.user.username }}
+											</a>
+										</td>
+										<td>{{ item.user.first_name }}</td>
+										<td>{{ item.user.last_name }}</td>
+										<td>{{ item.user.email }}</td>
+										<td>
+											<a href="{% url 'administrador:update-role' item.id %}">
+												{% if item.user_type == 1 %}
+													<span class="label label-danger">
+													{{ item.get_user_type_display }}
+												</span>
+												{% elif item.user_type == 2 %}
+													<span class="label label-info">
+													{{ item.get_user_type_display }}
+												</span>
+												{% elif item.user_type == 3 %}
+													<span class="label label-purple">
+													{{ item.get_user_type_display }}
+												</span>
+												{% endif %}
+											</a>
+										</td>
+										<td>
+											<a href="{% url 'administrador:delete-user' item.user.id %}">
+												<button type="button"
+																class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn"
+																data-toggle="tooltip" data-original-title="Delete">
+													<i class="ti-close"
+														 aria-hidden="true">
+													</i>
+												</button>
+											</a>
+										</td>
+									</tr>
+									{% comment %}{% endif %}{% endcomment %}
+								{% endfor %}
+								</tbody>
+								<tfoot>
+								<tr>
+									<td colspan="2">
+										<button type="button" class="btn btn-info btn-rounded" data-toggle="modal"
+														data-target="#add-contact">Nuevo usuario
+										</button>
+									</td>
+									<div id="add-contact" class="modal fade in" tabindex="-1" role="dialog"
+											 aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal"
+																	aria-hidden="true">×
+													</button>
+													<h4 class="modal-title" id="myModalLabel">Nuevo usuario</h4></div>
+												<div class="modal-body">
+													<form class="form-horizontal form-material" method="post"
+																action="{% url 'administrador:create-user' %}">
+														{% csrf_token %}
+														{{ form_register|crispy }}
+
+														<div class="modal-footer">
+															<button type="submit" class="btn btn-info waves-effect">
+																Crear Usuario
+															</button>
+															<button type="button" class="btn btn-default waves-effect"
+																			data-dismiss="modal">Cancelar
+															</button>
+														</div>
+													</form>
+
+
+												</div>
+
+											</div>
+											<!-- /.modal-content -->
+										</div>
+										<!-- /.modal-dialog -->
+									</div>
+									<td colspan="7">
+										<div class="text-right">
+											<ul class="pagination"></ul>
+										</div>
+									</td>
+								</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+
+
+
+{% endblock %}

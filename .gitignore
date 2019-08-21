@@ -110,7 +110,7 @@ celerybeat-schedule
 *.sage.py
 
 # Environments
-.env
+# .env
 .venv
 env/
 venv/
@@ -147,3 +147,4 @@ dmypy.json
 .vscode
 # En caso de que usen pipfile, descomentar
 Pipfile
+Pipfile.lock
