@@ -49,7 +49,7 @@
 										<td>{{ item.discount_price }}</td>
 										<td>{{ item.get_category_display }}</td>
 										<td>
-											<a href="{% comment %}{% url 'administrador:delete-user' item.user.id %}{% endcomment %}#">
+											<a href="{% url 'administrador:delete-product' item.id %}">
 												<button type="button"
 																class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn"
 																data-toggle="tooltip" data-original-title="Delete">

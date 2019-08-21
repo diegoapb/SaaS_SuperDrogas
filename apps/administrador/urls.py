@@ -17,6 +17,8 @@ urlpatterns = [
     path('home/', core_views.EcommerceHomeView.as_view(), name='home-ecommerce'),
     path('product-manager/', core_views.ProductManagerView.as_view(), name='product-manager'),
     path('create-product/', core_views.ProductCreateView.as_view(), name='create-product'),
+    path('delete-product/<int:id>/', core_views.ProductDeleteView.as_view(), name='delete-product'),
+
 
     path('product/<slug>/', core_views.ItemDetailView.as_view(), name='product-ecommerce'),
 

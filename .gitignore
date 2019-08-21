@@ -147,3 +147,4 @@ dmypy.json
 .vscode
 # En caso de que usen pipfile, descomentar
 Pipfile
+Pipfile.lock

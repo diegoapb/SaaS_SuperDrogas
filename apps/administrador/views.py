@@ -9,6 +9,8 @@ from django.views.generic import (
     View,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
+# from braces.views import MessageMixin
 from django.urls import reverse_lazy
 
 # Models
@@ -69,9 +71,10 @@ class UsersManagerView(LoginRequiredMixin, ListView):
         return context
 
 
-class UsersCreateView(LoginRequiredMixin, CreateView):
+class UsersCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     template_name = "administrador/account/create_users.html"
     form_class = RegisterForm
+    success_message = "User created successfully"
     success_url = reverse_lazy('administrador:user-manager')
 
 
@@ -105,9 +108,10 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-class UserDeleteView(LoginRequiredMixin, DeleteView):
-    success_url = reverse_lazy('administrador:user-manager')
+class UserDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     template_name = "administrador/account/delete_user.html"
+    success_message = "User deleted successfully"
+    success_url = reverse_lazy('administrador:user-manager')
 
     def get_object(self, queryset=None):
         id_ = self.kwargs.get("id")
@@ -151,3 +155,12 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
     template_name = "administrador/account/create_product.html"
     form_class = ItemsForm
     success_url = reverse_lazy('administrador:product-manager')
+
+
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
+    success_url = reverse_lazy('administrador:product-manager')
+    template_name = "administrador/account/delete_product.html"
+
+    def get_object(self, queryset=None):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Item, id=id_)
