@@ -64,9 +64,15 @@
 
 								<!--Card image-->
 								<div class="view overlay">
-									<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg"
+									{% if item.image.name %}
+									<img src="{{ MEDIA_URL }}{{ item.image.url }}"
 											 class="card-img-top"
 											 alt="">
+									{% else %}
+										<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg"
+											 class="card-img-top"
+											 alt="">
+									{% endif %}
 									<a href="{{ item.get_absolute_url }}">
 										<div class="mask rgba-white-slight"></div>
 									</a>

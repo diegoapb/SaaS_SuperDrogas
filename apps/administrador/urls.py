@@ -13,13 +13,8 @@ urlpatterns = [
     path('update-user/<int:id>/', core_views.UserUpdateView.as_view(), name='update-user'),
     path('delete-user/<int:id>/', core_views.UserDeleteView.as_view(), name='delete-user'),
 
-    # Ecommerce
-    path('home/', core_views.EcommerceHomeView.as_view(), name='home-ecommerce'),
+    # Ecommerce Admin
     path('product-manager/', core_views.ProductManagerView.as_view(), name='product-manager'),
     path('create-product/', core_views.ProductCreateView.as_view(), name='create-product'),
     path('delete-product/<int:id>/', core_views.ProductDeleteView.as_view(), name='delete-product'),
-
-
-    path('product/<slug>/', core_views.ItemDetailView.as_view(), name='product-ecommerce'),
-
 ]

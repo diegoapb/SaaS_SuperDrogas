@@ -71,6 +71,7 @@ TENANT_APPS = (
     'crispy_forms',
 
     'apps.administrador',
+    'apps.ecommerce',
     'apps.mensajes',
 
 )

@@ -16,8 +16,8 @@ from django.urls import reverse_lazy
 # Models
 from .models import (
     Role,
-    Item,
 )
+from apps.ecommerce.models import Item
 
 # Django user model
 from django.contrib.auth.models import User
@@ -46,9 +46,9 @@ class HomeView(View):
                 return render(self.request, 'administrador/account/dashboard.html', context)
             # Cliente online
             elif role.user_type == 3:
-                return redirect('administrador:home-ecommerce')
+                return redirect('store:home-ecommerce')
         # No esta logeado
-        return render(self.request, "ecommerce/home.html")
+        return redirect('store:home-ecommerce')
 
 
 class UsersManagerView(LoginRequiredMixin, ListView):
@@ -118,18 +118,7 @@ class UserDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         return get_object_or_404(User, id=id_)
 
 
-# Ecommerce
-
-class EcommerceHomeView(ListView):
-    model = Item
-    paginate_by = 10
-    template_name = "ecommerce/home.html"
-
-
-class ItemDetailView(DetailView):
-    model = Item
-    template_name = "ecommerce/product.html"
-
+# Ecommerce admin
 
 class ProductManagerView(LoginRequiredMixin, ListView):
     model = Item
