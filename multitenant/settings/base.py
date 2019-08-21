@@ -67,9 +67,11 @@ TENANT_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'bootstrap4',
     'crispy_forms',
+    'django_countries',
+    'bootstrap4',
 
+    'apps.usuarios',
     'apps.administrador',
     'apps.ecommerce',
     'apps.mensajes',

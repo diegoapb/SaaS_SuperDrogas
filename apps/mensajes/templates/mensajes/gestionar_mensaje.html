@@ -1,61 +1,91 @@
-{% extends 'base_tablas.html' %}
-{% load bootstrap4 %}
+{% extends 'administrador/account/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block page_title %}
-    Registro de clientes
+	Registro de clientes
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Registrar mensaje</h4>
-                    <hr>
-                    <form method="POST">{% csrf_token %}
-                        {% bootstrap_form form %}
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Listado de mensajes </h4>
-                    <hr>
-                    <div class="table-responsive">
-                        <table class="table table-bordered data-combine">
-                            <thead>
-                                <tr>
-                                    <th>Mensaje</th>
-                                    <th>Opciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for mensaje in mensajes %}
-                                    <tr>
-                                        <td>{{ mensaje }}</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button class="btn btn-primary dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
-                                                    Opciones
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="{% url 'mensajes:modificar' mensaje.id %}">Modificar</a>
-                                                    <a class="dropdown-item" href="{% url 'mensajes:eliminar' mensaje.id %}">Eliminar</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+	<div class="container-fluid">
+
+		<div class="row page-titles">
+			<div class="col-md-6 col-8 align-self-center">
+				<h3 class="text-themecolor m-b-0 m-t-0">Crear usuarios</h3>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="{% url 'administrador:home' %}">Inicio</a></li>
+					<li class="breadcrumb-item active">usuarios</li>
+				</ol>
+			</div>
+			<div class="col-md-6 col-4 align-self-center">
+				<button class="right-side-toggle waves-effect waves-light btn-info btn-circle btn-sm pull-right m-l-10">
+					<i class="ti-settings text-white"></i></button>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-4">
+				<div class="card">
+					<div class="card-block">
+						<h4 class="card-title">Registrar mensaje</h4>
+						<h6 class="card-subtitle"></h6>
+
+
+						<form action="" method="post">
+							{% csrf_token %}
+							{{ form|crispy }}
+							<button class="btn btn-primary" type="submit">Guardar</button>
+						</form>
+
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-8">
+				<div class="card">
+					<div class="card-block">
+						<h4 class="card-title">Listado de mensajes</h4>
+						<h6 class="card-subtitle"></h6>
+						<hr>
+						<div class="table-responsive">
+							<table class="table table-bordered data-combine">
+								<thead>
+								<tr>
+									<th>Mensaje</th>
+									<th>Opciones</th>
+								</tr>
+								</thead>
+								<tbody>
+								{% for mensaje in mensajes %}
+									<tr>
+										<td>{{ mensaje }}</td>
+										<td>
+											<div class="dropdown">
+												<button class="btn btn-primary dropdown-toggle" type="button"
+																id="dropdownMenuButton" data-toggle="dropdown"
+																aria-haspopup="true" aria-expanded="false">
+													Opciones
+												</button>
+												<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+													<a class="dropdown-item" href="{% url 'mensajes:modificar' mensaje.id %}">Modificar</a>
+													<a class="dropdown-item" href="{% url 'mensajes:eliminar' mensaje.id %}">Eliminar</a>
+												</div>
+											</div>
+										</td>
+									</tr>
+								{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
 {% endblock %}
