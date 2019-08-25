@@ -1,7 +1,7 @@
 from .base import *
 
 DEBUG = True
-ALLOWED_HOSTS = ['.localhost']
+ALLOWED_HOSTS = ['.localhost', 'localhost']
 
 INSTALLED_APPS += [
     'debug_toolbar'

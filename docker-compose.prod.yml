@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   postgres:
-    container_name: saas_pg
+    container_name: saas_pg_prod
     image: postgres:11.4
     hostname: postgres
     ports:
@@ -13,16 +13,19 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - ./_datos_iniciales:/home/_datos_iniciales
+      - static_volume:/usr/src/static_collected
     restart: unless-stopped
 
   web:
-    container_name: saas_web
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/usr/src/app/
-    ports:
-      - "8000:8000"
+    container_name: saas_web_prod
+    build:
+      context: .
+      dockerfile: Dockerfile.prod  
+    command: gunicorn multitenant.wsgi:application --bind 0.0.0.0:8000
+#    volumes:
+#      - .:/usr/src/app/
+    expose:
+    - 8000
     environment:
 #      - DEBUG=1
 #      - SECRET_KEY=foo
@@ -35,18 +38,16 @@ services:
       - DATABASE=postgres
     depends_on:
       - postgres
-
-  pgadmin:
-    container_name: saas_pgadmin
-    image: dpage/pgadmin4
-    depends_on:
-      - postgres
+  nginx:
+    container_name: saas_nginx_prod
+    build: ./nginx
+    volumes:
+      - static_volume:/usr/src/static_collected
     ports:
-      - "80:80"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
-      PGADMIN_DEFAULT_PASSWORD: admin
-    restart: unless-stopped
+      - 1337:80
+    depends_on:
+      - web
 
 volumes:
   postgres-data:
+  static_volume:
