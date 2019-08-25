@@ -68,6 +68,23 @@ Para finalizar solo debemos ingresar al localhost mencionado por el servidor par
 http://localhost:8000
 ```
 
+
+## Producción
+
+Construimos el proyecto y lo corremos
+
+```
+docker-compose -f docker-compose.prod.yml up -d --build
+```
+
+Se agregan los datos iniciales a la BD
+
+```
+docker exec -it saas_pg_prod psql -U postgres -d multitenant -f /home/_datos_iniciales/2_tenant_publico.sql
+```
+
+
+
 ## Tests
 
 ## Construido con:

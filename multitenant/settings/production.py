@@ -1,8 +1,9 @@
 from .base import *
 
-DEBUG = False
-ALLOWED_HOSTS = ['.localhost', 'localhost', 'http://ec2-18-219-251-108.us-east-2.compute.amazonaws.com',
-                 '18.219.251.108']
+DEBUG = True
+ALLOWED_HOSTS = ['3.13.232.82', 'superdrug.tk', '.superdrug.tk']
+
+DOMAIN = '.superdrug.tk'
 
 STRIPE_PUBLIC_KEY = ''
 STRIPE_SECRET_KEY = ''
