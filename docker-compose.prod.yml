@@ -2,7 +2,7 @@ version: '3.7'
 services:
   postgres:
     container_name: saas_pg_prod
-    image: postgres:11.4
+    image: postgres:11.5-alpine
     hostname: postgres
     ports:
       - "5432:5432"
@@ -13,23 +13,23 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - ./_datos_iniciales:/home/_datos_iniciales
-      - static_volume:/usr/src/static_collected
+
     restart: unless-stopped
 
   web:
     container_name: saas_web_prod
     build:
       context: .
-      dockerfile: Dockerfile.prod  
+      dockerfile: Dockerfile.prod
     command: gunicorn multitenant.wsgi:application --bind 0.0.0.0:8000
-#    volumes:
-#      - .:/usr/src/app/
+    volumes:
+      - static_volume:/usr/src/static_collected
     expose:
-    - 8000
+      - 8000
     environment:
-#      - DEBUG=1
-#      - SECRET_KEY=foo
-#      - SQL_ENGINE=django.db.backends.postgresql
+      #      - DEBUG=1
+      #      - SECRET_KEY=foo
+      #      - SQL_ENGINE=django.db.backends.postgresql
       - SQL_DATABASE=multitenant
       - SQL_USER=postgres
       - SQL_PASSWORD=postgres
