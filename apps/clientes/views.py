@@ -3,6 +3,11 @@ from django.contrib import messages
 from django.db import transaction
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
+from django_tenants.utils import schema_context
+
+# models
+from django.contrib.auth.models import User
+from apps.administrador.models import Role
 
 def landing(request):
     return render(request, 'landing/index.html', {})
@@ -35,6 +40,25 @@ def registrar_cliente(request):
                     """
                     Dominio.objects.create(domain='%s%s' % (cliente.schema_name, settings.DOMAIN), is_primary=True, tenant=cliente)
                     messages.success(request, "Se ha registrado correctamente el cliente")
+
+                    # Creacion del super usuario al crear el tenant
+                    with schema_context(cliente.schema_name):
+                        """Crea usuarios al momento de crear el tenant"""
+                        # Se crea un super usuario
+                        user = User.objects.create_superuser('root', 'root@root.com', 'root')
+                        user.save()
+                        # Se actualiza el rol
+                        role = Role.objects.get(user=user)
+                        role.user_type = 1
+                        role.save()
+
+                        # Se crea cliente online
+                        user_cliente = User.objects.create_user('cliente', 'cliente@cliente.com', 'cliente')
+                        user_cliente.save()
+
+                        # Se crea vendedor (TPV)
+                        user_vendedor = User.objects.create_user('vendedor', 'vendedor@vendedor.com', 'vendedor')
+                        user_vendedor.save()
             except Exception:
                 messages.error(request, 'Ha ocurrido un error durante la creación del cliente, se aborto la operación')
             return redirect('clientes:registrar')
