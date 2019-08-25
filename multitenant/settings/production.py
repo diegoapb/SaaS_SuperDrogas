@@ -1,6 +1,6 @@
 from .base import *
 
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['.localhost', 'localhost', 'http://ec2-18-219-251-108.us-east-2.compute.amazonaws.com',
                  '18.219.251.108']
 
