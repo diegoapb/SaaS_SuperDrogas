@@ -176,18 +176,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-
+# Esta es una ruta atras del proyecto
+VENV_PATH = os.path.dirname(BASE_DIR)
 
 """Static files"""
-VENV_PATH = os.path.dirname(BASE_DIR)
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(VENV_PATH, 'static_collected')
+STATIC_ROOT = os.path.join(VENV_PATH, 'staticfiles')
 
 """Media files"""
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(VENV_PATH, 'media')
+MEDIA_ROOT = os.path.join(VENV_PATH, 'mediafiles')
 
 # auth
 

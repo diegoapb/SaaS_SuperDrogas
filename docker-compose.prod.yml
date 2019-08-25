@@ -23,7 +23,8 @@ services:
       dockerfile: Dockerfile.prod
     command: gunicorn multitenant.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - static_volume:/usr/src/static_collected
+      - static_volume:/usr/src/staticfiles
+      - media_volume:/usr/src/mediafiles
     expose:
       - 8000
     environment:
@@ -42,7 +43,8 @@ services:
     container_name: saas_nginx_prod
     build: ./nginx
     volumes:
-      - static_volume:/usr/src/static_collected
+      - static_volume:/usr/src/staticfiles
+      - media_volume:/usr/src/mediafiles
     ports:
       - 1337:80
     depends_on:
@@ -51,3 +53,4 @@ services:
 volumes:
   postgres-data:
   static_volume:
+  media_volume:
