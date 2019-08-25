@@ -1,0 +1,44 @@
+{% extends "administrador/account/base.html" %}
+{% block head_title %}Crear productos{% endblock head_title %}
+{% load crispy_forms_tags %}
+
+{% block inner %}
+
+
+	<div class="container-fluid">
+
+		<div class="row page-titles">
+			<div class="col-md-6 col-8 align-self-center">
+				<h3 class="text-themecolor m-b-0 m-t-0">Crear productos</h3>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="{% url 'administrador:home' %}">Inicio</a></li>
+					<li class="breadcrumb-item active">usuarios</li>
+				</ol>
+			</div>
+			<div class="col-md-6 col-4 align-self-center">
+				<button class="right-side-toggle waves-effect waves-light btn-info btn-circle btn-sm pull-right m-l-10">
+					<i class="ti-settings text-white"></i></button>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-block">
+						<h4 class="card-title">Ha ocurrido un error, intentelo nuevamente</h4>
+						<h6 class="card-subtitle"></h6>
+
+
+						<form action="" method="post">
+							{% csrf_token %}
+							{{ form|crispy }}
+							<button class="btn btn-primary" type="submit">Guardar</button>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+{% endblock %}
