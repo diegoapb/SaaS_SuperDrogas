@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+	<title>Farmacia Super Drogas</title>
+	<link rel="icon" type="image/png" sizes="16x16" href="images/publicidad/favicon-16x16.png">
+	<!--/tags -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Grocery Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!--//tags -->
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/font-awesome.css" rel="stylesheet">
+	<!--pop-up-box-->
+	<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+	<!--//pop-up-box-->
+	<!-- price range -->
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui1.css">
+	<!-- fonts -->
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+</head>
+
+<body>
+	<!-- top-header -->
+	<div class="header-most-top">
+		<p>Bienvenido a la sucursal virtual de su Farmacia Super Drogas</p>
+	</div>
+	<!-- //top-header -->
+	<!-- header-bot-->
+	<div class="header-bot">
+		<div class="header-bot_inner_wthreeinfo_header_mid">
+			<!-- header-bot-->
+			<div class="col-md-4 logo_agile">
+				<h1>
+					<a href="index.html">
+						<!--<span>S</span>uper
+						<span>D</span>rogas-->
+						<img src="images/logoSuperDrogas.png" alt=" ">                   
+					</a>
+				</h1>
+			</div>
+			<!-- header-bot -->
+			<div class="col-md-8 header">
+				<!-- header lists -->
+				<ul>
+					<li>
+						<a class="play-icon popup-with-zoom-anim" href="#small-dialog1">
+							<span class="fa fa-map-marker" aria-hidden="true"></span>Nuestra sede</a>
+					</li>
+					<li>
+						<a href="#" data-toggle="modal" data-target="#myModal1">
+							<span class="fa fa-truck" aria-hidden="true"></span>Envios</a>
+					</li>
+					<li>
+						<span class="fa fa-phone" aria-hidden="true"></span> 320 234 5678
+					</li>
+					<li>
+						<a href="#" data-toggle="modal" data-target="#myModal1">
+							<span class="fa fa-unlock-alt" aria-hidden="true"></span>Ingresar</a>
+					</li>
+					<li>
+						<a href="#" data-toggle="modal" data-target="#myModal2">
+							<span class="fa fa-pencil-square-o" aria-hidden="true"></span>Registrate</a>
+					</li>
+				</ul>
+				<!-- //header lists -->
+				<!-- search -->
+				<div class="agileits_search">
+					<form action="#" method="post">
+						<input name="Search" type="search" placeholder="¿En que puedo ayudarte?" required="">
+						<button type="submit" class="btn btn-default" aria-label="Left Align">
+							<span class="fa fa-search" aria-hidden="true"> </span>
+						</button>
+					</form>
+				</div>
+				<!-- //search -->
+				<!-- cart details -->
+				<div class="top_nav_right">
+					<div class="wthreecartaits wthreecartaits2 cart cart box_1">
+						<form action="#" method="post" class="last">
+							<input type="hidden" name="cmd" value="_cart">
+							<input type="hidden" name="display" value="1">
+							<button class="w3view-cart" type="submit" name="submit" value="">
+								<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+							</button>
+						</form>
+					</div>
+				</div>
+				<!-- //cart details -->
+				<div class="clearfix"></div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<!-- signin Model -->
+	<!-- Modal1 -->
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body modal-body-sub_agile">
+					<div class="main-mailposi">
+						<span class="fa fa-envelope-o" aria-hidden="true"></span>
+					</div>
+					<div class="modal_body_left modal_body_left1">
+						<h3 class="agileinfo_sign">Ingresar </h3>
+						<p>
+							Inicia sesión ahora, comencemos tu compra! 
+							<a href="#" data-toggle="modal" data-target="#myModal2">
+								Registrate</a>
+						</p>
+						<SCRIPT  language=JavaScript> 
+							function go(){
+							if (document.form.password.value=='admin' && document.form.login.value=='admin'){ 
+									document.form.submit(); 
+								} 
+								else{ 
+									 alert("Porfavor ingrese, nombre de usuario y contraseña correctos."); 
+								} 
+							} 
+							function consultas() {
+								var consult
+								
+								var xhttp = new XMLHttpRequest();
+								xhttp.onreadystatechange = function() {
+									if (this.readyState == 4 && this.status == 200) {
+									//document.getElementById("get").innerHTML = this.responseText;
+									consult = this.responseText;
+									}
+							};
+							xhttp.open("GET", "consultas.php", true);
+							xhttp.send();
+							}
+							</SCRIPT> 
+						<form action="about.html" method="post">
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" placeholder="Nombre de usuario" name="User" required="">
+							</div>
+							<div class="styled-input">
+								<input type="password" placeholder="Contraseña" name="Password" required="">
+							</div>
+							<input type="submit" value="Ingresar" onclick=go() >
+						</form>
+						<div class="clearfix"></div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<!-- //Modal content-->
+		</div>
+	</div>
+	<!-- //Modal1 -->
+	<!-- //signin Model -->
+	<!-- signup Model -->
+	<!-- Modal2 -->
+	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body modal-body-sub_agile">
+					<div class="main-mailposi">
+						<span class="fa fa-envelope-o" aria-hidden="true"></span>
+					</div>
+					<div class="modal_body_left modal_body_left1">
+						<h3 class="agileinfo_sign">Registrate</h3>
+						<p>
+							¡Únete a la farmacia Super Drogas!
+						</p>
+						<form action="#" method="post">
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" placeholder="Name" name="Name" required="">
+							</div>
+							<div class="styled-input">
+								<input type="email" placeholder="E-mail" name="Email" required="">
+							</div>
+							<div class="styled-input">
+								<input type="password" placeholder="Password" name="password" id="password1" required="">
+							</div>
+							<div class="styled-input">
+								<input type="password" placeholder="Confirm Password" name="Confirm Password" id="password2" required="">
+							</div>
+							<input type="submit" value="Sign Up">
+						</form>
+						<p>
+							<a href="#">Al hacer clic en registrar, acepto los términos y condiciones.</a>
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- //Modal content-->
+		</div>
+	</div>
+	<!-- //Modal2 -->
+	<!-- //signup Model -->
+	<!-- //header-bot -->
+	<!-- navigation -->
+	<div class="ban-top">
+		<div class="container">
+			<div class="top_nav_left">
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+							    aria-expanded="false">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav menu__list">								
+								<li class="dropdown">
+									<a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">Dermocosmética
+										<b class="caret"></b>
+									</a>
+									<ul class="dropdown-menu agile_short_dropdown">
+										<li>
+											<a href="cuidadocabello.html">Cuidado del cabello</a>
+										</li>
+										<li>
+											<a href="typography.html">Maquillaje</a>
+										</li>
+										<li>
+											<a href="typography.html">Cuidado del rostro</a>
+										</li>
+										<li>
+											<a href="typography.html">Solares</a>
+										</li>
+									</ul>
+								</li>
+
+								<li class="dropdown">
+									<a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">Naturales
+										<b class="caret"></b>
+									</a>
+									<ul class="dropdown-menu agile_short_dropdown">
+										<li>
+											<a href="icons.html">Dolor e inflamación</a>
+										</li>
+										<li>
+											<a href="typography.html">Antiacidos</a>
+										</li>
+										<li>
+											<a href="typography.html">Insomnio</a>
+										</li>
+										<li>
+											<a href="typography.html">Multivitaminicos</a>
+										</li>
+									</ul>
+								</li>
+
+								<li class="dropdown">
+									<a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">Cuidado personal
+										<b class="caret"></b>
+									</a>
+									<ul class="dropdown-menu agile_short_dropdown">
+										<li>
+											<a href="icons.html">Aseo personal</a>
+										</li>
+										<li>
+											<a href="typography.html">Cuidado oral</a>
+										</li>
+										<li>
+											<a href="typography.html">Cuidado de la piel</a>
+										</li>
+										<li>
+											<a href="typography.html">Incontinencia</a>
+										</li>
+									</ul>
+								</li>
+
+								<li class="dropdown">
+									<a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">Salud y bienestar
+										<b class="caret"></b>
+									</a>
+									<ul class="dropdown-menu agile_short_dropdown">
+										<li>
+											<a href="icons.html">Hospitalarios</a>
+										</li>
+										<li>
+											<a href="typography.html">Antigripales</a>
+										</li>
+										<li>
+											<a href="typography.html">Bienestar sexual
+											</a>
+										</li>
+										<li>
+											<a href="typography.html">Cicatrizantes</a>
+										</li>
+									</ul>
+								</li>
+								<li class="">
+									<a class="nav-stylehead" href="faqs.html">¿Dudas?</a>
+								</li>
+								<li class="">
+									<a class="nav-stylehead" href="faqs.html">¿Dudas?</a>
+								</li>
+								<li class="">
+									<a class="nav-stylehead" href="contact.html">Contáctanos</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<!-- //navigation -->
+	<!-- banner-2 -->
+
+	</div>
+	<!-- //banner-2 -->
+
+	<!-- FAQ-help-page -->
+	<div class="faqs-w3l">
+		<div class="container">
+			<!-- tittle heading -->
+			<h3 class="tittle-w3l">¿Dudas?
+				<span class="heading-style">
+					<i></i>
+					<i></i>
+					<i></i>
+				</span>
+			</h3>
+			<!-- //tittle heading -->
+			<h3 class="w3-head">Preguntas Frecuentes</h3>
+			<div class="faq-w3agile">
+				<ul class="faq">
+					<li class="item1">
+						<a href="#" title="click here">¿Tienen servicio a domicilio o contraentrega?</a>
+						<ul>
+							<li class="subitem1">
+								<p>Si, UNICAMENTE PARA BOGOTÁ, (en el momento). Recuerda que este servicio tiene un costo adicional de 6.000 y cubrimos toda la ciudad. Puedes contactarnos al 322 907 9958  o al 3108564644, tambien via correo a  servicioalcliente@misvitaminas.com.co Puedes recibir tu producto el mismo día dependiendo la hora que se realice la orden, nor, sera entregado al día siguiente. Estos tiempos son únicamente para servicio contraentrega.</p>
+							</li>
+						</ul>
+					</li>
+					<li class="item2">
+						<a href="#" title="click here">¿Cuanto vale el envío de mi pedido?</a>
+						<ul>
+							<li class="subitem1">
+								<p>Usamos actualmente empresas como Envía Colvandes e Interrapidisimo que tienen gran cobertura a nivel nacional. El valor del envió corresponde al valor despachado desde la ciudad de Bogotá y puedes conocerlo después de que agregas tus productos al carrito y vas al chekout, en la zona que dice calcular envió, no importa lo lejano que sea ya lo tenemos calculado. De igual manera hemos estudiado las empresas transportadoras para que sean la de un excelente servicio y la de mas rápida entrega. Damos algunos ejemplos segun el valor :  4.900 envio a ( Bogotá)   6,000 envió a ( Neiva, Ibague, Florencia, Tunja, Sogamoso, Yopal, Chiquinquira y muchos mas)  9.500 envio a ( Medellin, Cali, Barranquilla, Rioacha, Monteria, Pasto, Mocoa, Cucuta)  14.900 envió a ( Municipios demasiado alejados  de las rutas o  de difícil acceso )</p>
+							</li>
+						</ul>
+					</li>
+					<li class="item3">
+						<a href="#" title="click here">¿Necesito Registrarme para realizar una compra?</a>
+						<ul>
+							<li class="subitem1">
+								<p>No, puedes realizar una compra sin registrarte, pero si te registras tus datos se guardaran y sera mas facil realizar compras en el futuro, ademas de que tu historial sera guardado y podrás recibir promociones y obsequios con mayor facilidad de parte de nosotros.</p>
+							</li>
+						</ul>
+					</li>
+					<li class="item4">
+						<a href="#" title="click here">¿Cuanto se demora en llegar mi pedido?</a>
+						<ul>
+							<li class="subitem1">
+								<p>Nosotros realizamos los envíos por empresas responsables como Servientrega, Interrapidisimo o Envia Colvandes entre otras, debes tener en cuenta la hora de tu pedido pago, si se confirma antes de las 4:00 pm lo enviamos el mismo día y lo estarias recibiendo al día siguiente, en algunas ciudades o pueblos se demora un poco mas lo cual puede tardar un día adicional. SIEMPRE  te enviaremos el numero de guia para que puedas rastrear tu envio.  Por ejemplo en Bogotá, Medellin, Cali, Tunja, Cucuta, Villavicencio, Cartagena y demás ciudades principales o sus cercanías  se demora un día hábil. </p>
+							</li>
+						</ul>
+					</li>
+					<li class="item5">
+						<a href="#" title="click here">¿Son productos Originales y tienen buena fecha de vencimiento?</a>
+						<ul>
+							<li class="subitem1">
+								<p>En FARMACIA SUPER DROGAS nos encargamos del proceso de compra con los directos distribuidores en Colombia, cuando se agota en el país un producto nos abstenemos de comprarlo a diferentes proveedores no autorizados para asegurarnos de la legalidad  originalidad de los productos que enviamos a tu hogar. Siempre enviamos los productos con fechas de vencimiento superiores a los 10 meses de caducidad.</p>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- //FAQ-help-page -->
+
+	<!-- newsletter -->
+	<div class="footer-top">
+		<div class="container-video" >
+			<div class="col-xs-8 agile-leftmk">
+				
+				<!-- imagen comprar -->
+	<div class="compras">
+		<div class="container">
+			<img width="1300px" height="350px" src="images/compras.png">
+		</div>
+	</div>
+	<!-- //imagen comprar-->
+			</div>
+		</div>
+	</div>
+	<!-- //newsletter -->
+	<!-- footer -->
+		<footer>
+		<div class="container">
+			<!-- footer second section -->
+			<div class="w3l-grids-footer">
+				<div class="col-xs-4 offer-footer">
+					<div class="col-xs-4 icon-fot">
+						<span class="fa fa-map-marker" aria-hidden="true"></span>
+					</div>
+					<div class="col-xs-8 text-form-footer">
+						<h3>Rastrea tu orden</h3>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="col-xs-4 offer-footer">
+					<div class="col-xs-4 icon-fot">
+						<span class="fa fa-refresh" aria-hidden="true"></span>
+					</div>
+					<div class="col-xs-8 text-form-footer">
+						<h3>Devoluciones gratis y fáciles</h3>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="col-xs-4 offer-footer">
+					<div class="col-xs-4 icon-fot">
+						<span class="fa fa-times" aria-hidden="true"></span>
+					</div>
+					<div class="col-xs-8 text-form-footer">
+						<h3>Cancelación online</h3>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<!-- //footer second section -->
+			<!-- footer third section -->
+			<div class="footer-info w3-agileits-info">
+				<!-- footer categories -->
+				<div class="col-sm-5 address-right">
+					<div class="col-xs-6 footer-grids">
+						<h3>Categorias</h3>
+						<ul>
+							<li>
+								<a href="product.html">Dermocosmética</a>
+							</li>
+							<li>
+								<a href="product.html">Cuidado del cabello</a>
+							</li>
+							<li>
+								<a href="product.html">Maquillaje</a>
+							</li>
+							<li>
+								<a href="product2.html">Cuidado del rostro</a>
+							</li>
+							<li>
+								<a href="product.html">Solares</a>
+							</li>
+							<li>
+								<a href="product2.html">Naturales</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-xs-6 footer-grids agile-secomk">
+						<ul>
+							<li>
+								<a href="product.html">Dolor e inflamación</a>
+							</li>
+							<li>
+								<a href="product.html">Antiácidos</a>
+							</li>
+							<li>
+								<a href="product.html">Insomnio</a>
+							</li>
+							<li>
+								<a href="product.html">multivitaminicos</a>
+							</li>
+							<li>
+								<a href="product2.html">Cuidado personal</a>
+							</li>
+							<li>
+								<a href="product.html">Salud y bienestar</a>
+							</li>
+						</ul>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<!-- //footer categories -->
+				<!-- quick links -->
+				<div class="col-sm-5 address-right">
+					<div class="col-xs-6 footer-grids">
+						<h3>¿Tienes dudas?</h3>
+						<ul>
+							<li>
+								<a href="about.html">Nosotros</a>
+							</li>
+							<li>
+								<a href="contact.html">Contactanos</a>
+							</li>
+							<li>
+								<a href="help.html">Ayuda</a>
+							</li>
+							<li>
+								<a href="faqs.html">Preguntas</a>
+							</li>
+							<li>
+								<a href="terms.html">Terminos de uso</a>
+							</li>
+							<li>
+								<a href="privacy.html">Politicas de privacidad</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-xs-6 footer-grids">
+						<h3>Contáctanos</h3>
+						<ul>
+							<li>
+								<i class="fa fa-map-marker"></i> Av.Siempreviva 123</li>
+							<li>
+								<i class="fa fa-mobile"></i> 323 222 3333 </li>
+							<li>
+								<i class="fa fa-phone"></i> 322 44 44 </li>
+							<li>
+								<i class="fa fa-envelope-o"></i>
+								<a href="mailto:example@mail.com"> superdrogas@example.com</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- //quick links -->
+				<!-- social icons -->
+				<div class="col-sm-2 footer-grids  w3l-socialmk">
+					<h3>Siguemos en:</h3>
+					<div class="social">
+						<ul>
+							<li>
+								<a class="icon fb" href="#">
+									<i class="fa fa-facebook"></i>
+								</a>
+							</li>
+							<li>
+								<a class="icon tw" href="#">
+									<i class="fa fa-twitter"></i>
+								</a>
+							</li>
+							<li>
+								<a class="icon gp" href="#">
+									<i class="fa fa-google-plus"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- //social icons -->
+				<div class="clearfix"></div>
+			</div>
+			<!-- //footer third section -->
+				<!-- payment -->
+				<div class="sub-some child-momu">
+					<h5>Métodos de pago</h5>
+					<ul>
+						<li>
+							<img src="images/pay2.png" alt="">
+						</li>
+						<li>
+							<img src="images/pay1.png" alt="">
+						</li>
+						<li>
+							<img src="images/pay4.png" alt="">
+						</li>
+						<li>
+							<img src="images/pay3.png" alt="">
+						</li>
+					</ul>
+				</div>
+				<!-- //payment -->
+			</div>
+			<!-- //footer fourth section (text) -->
+		</div>
+	</footer>
+	<!-- //footer -->
+	<!-- copyright -->
+	<div class="copy-right">
+		<div class="container">
+			<p>©  2019 Farmacia Super Drogas. todos los derechos reservados | Diseñado por UniSoft.
+			</p>
+		</div>
+	</div>
+	<!-- //copyright -->
+
+	<!-- js-files -->
+	<!-- jquery -->
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<!-- //jquery -->
+
+	<!-- popup modal (for signin & signup)-->
+	<script src="js/jquery.magnific-popup.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('.popup-with-zoom-anim').magnificPopup({
+				type: 'inline',
+				fixedContentPos: false,
+				fixedBgPos: true,
+				overflowY: 'auto',
+				closeBtnInside: true,
+				preloader: false,
+				midClick: true,
+				removalDelay: 300,
+				mainClass: 'my-mfp-zoom-in'
+			});
+
+		});
+	</script>
+	<!-- Large modal -->
+	<!-- <script>
+		$('#').modal('show');
+	</script> -->
+	<!-- //popup modal (for signin & signup)-->
+
+	<!-- cart-js -->
+	<script src="js/minicart.js"></script>
+	<script>
+		paypalm.minicartk.render(); //use only unique class names other than paypal1.minicart1.Also Replace same class name in css and minicart.min.js
+
+		paypalm.minicartk.cart.on('checkout', function (evt) {
+			var items = this.items(),
+				len = items.length,
+				total = 0,
+				i;
+
+			// Count the number of each item in the cart
+			for (i = 0; i < len; i++) {
+				total += items[i].get('quantity');
+			}
+
+			if (total < 3) {
+				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+				evt.preventDefault();
+			}
+		});
+	</script>
+	<!-- //cart-js -->
+
+	<!-- script for tabs -->
+	<script>
+		$(function () {
+
+			var menu_ul = $('.faq > li > ul'),
+				menu_a = $('.faq > li > a');
+
+			menu_ul.hide();
+
+			menu_a.click(function (e) {
+				e.preventDefault();
+				if (!$(this).hasClass('active')) {
+					menu_a.removeClass('active');
+					menu_ul.filter(':visible').slideUp('normal');
+					$(this).addClass('active').next().stop(true, true).slideDown('normal');
+				} else {
+					$(this).removeClass('active');
+					$(this).next().stop(true, true).slideUp('normal');
+				}
+			});
+
+		});
+	</script>
+	<!-- script for tabs -->
+
+	<!-- password-script -->
+	<script>
+		window.onload = function () {
+			document.getElementById("password1").onchange = validatePassword;
+			document.getElementById("password2").onchange = validatePassword;
+		}
+
+		function validatePassword() {
+			var pass2 = document.getElementById("password2").value;
+			var pass1 = document.getElementById("password1").value;
+			if (pass1 != pass2)
+				document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+			else
+				document.getElementById("password2").setCustomValidity('');
+			//empty string means no validation error
+		}
+	</script>
+	<!-- //password-script -->
+
+	<!-- smoothscroll -->
+	<script src="js/SmoothScroll.min.js"></script>
+	<!-- //smoothscroll -->
+
+	<!-- start-smooth-scrolling -->
+	<script src="js/move-top.js"></script>
+	<script src="js/easing.js"></script>
+	<script>
+		jQuery(document).ready(function ($) {
+			$(".scroll").click(function (event) {
+				event.preventDefault();
+
+				$('html,body').animate({
+					scrollTop: $(this.hash).offset().top
+				}, 1000);
+			});
+		});
+	</script>
+	<!-- //end-smooth-scrolling -->
+
+	<!-- smooth-scrolling-of-move-up -->
+	<script>
+		$(document).ready(function () {
+			/*
+			var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+			};
+			*/
+			$().UItoTop({
+				easingType: 'easeOutQuart'
+			});
+
+		});
+	</script>
+	<!-- //smooth-scrolling-of-move-up -->
+
+	<!-- for bootstrap working -->
+	<script src="js/bootstrap.js"></script>
+	<!-- //for bootstrap working -->
+	<!-- //js-files -->
+
+</body>
+
+</html>
