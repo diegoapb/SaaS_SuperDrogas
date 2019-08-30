@@ -19,3 +19,13 @@ class Dominio(DomainMixin):
     Modelo que representará al dominio en el sistema
     """
     pass
+
+
+class contacto(models.Model):
+    PLAN = (('B', 'Basico'), ('P', 'Plus'), ('P', 'Premium'))
+    nombre = models.CharField(max_length=50)
+    apellido = models.CharField(max_length=50)
+    nombre_Franquisia = models.CharField(max_length=50)
+    plan = models.CharField(max_length=1, choices=PLAN)
+    correo = models.EmailField()
+    mensaje = models.TextField()

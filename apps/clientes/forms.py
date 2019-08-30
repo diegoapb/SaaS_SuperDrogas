@@ -21,7 +21,18 @@ class ClienteForm(forms.ModelForm):
         return direccion_tenant
 
 
+class FormularioContacto(forms.Form):
+    PLAN = (('Basico', 'Basico'), ('Plus', 'Plus'), ('Premium', 'Premium'))
+
+    nombre = forms.CharField(required=True, max_length=50)
+    apellido = forms.CharField(required=True, max_length=50)
+    nombre_Franquisia = forms.CharField(required=True, max_length=50)
+    plan = forms.ChoiceField(required=True, widget=forms.Select, choices=PLAN)
+    correo = forms.EmailField()
+    mensaje = forms.CharField(widget=forms.Textarea)
+
+
 class ModificarClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
-        fields = ('nombre', )
+        fields = ('nombre',)

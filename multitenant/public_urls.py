@@ -6,6 +6,7 @@ from django.contrib import admin
 
 urlpatterns = [
     path('', landing, name='landing'),
+
     # All auth app django
     path('accounts/', include('allauth.urls')),
     path('administrador/', home, name='home'),
