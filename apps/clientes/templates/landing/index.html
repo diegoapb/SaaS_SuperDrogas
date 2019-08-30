@@ -431,8 +431,6 @@
 										<!-- /.modal-dialog -->
 									</div>
 							<!-- termina el modal-->
-
-							<a href="{% url 'home' %}" class="primary-btn header-btn">Empezar</a>
 						</div>
 
 					</div>
@@ -453,7 +451,45 @@
 								<span class="price">$</span>
 								<h1> 32.000 </h1><span class="time">Por <br> Mes</span>
 							</div>
-							<a href="{% url 'home' %}" class="primary-btn header-btn">Empezar</a>
+							<button type="button" class="btn btn-info btn-rounded" data-toggle="modal"
+														data-target="#add-contact">Empezar
+										</button>
+							<!-- comeinza el modal -->
+							<div id="add-contact" class="modal fade in" tabindex="-1" role="dialog"
+											 aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal"
+																	aria-hidden="true">×
+													</button>
+													<h4 class="modal-title" id="myModalLabel">Pide tu fanquisia</h4></div>
+												<div class="modal-body">
+													<form class="form-horizontal form-material" method="post"
+																id="formulario" >
+															{% csrf_token %}
+														{{ formulario|crispy   }}
+
+
+
+														<div class="modal-footer">
+															<button type="submit" class="btn btn-info waves-effect">
+																Enviar
+															</button>
+															<button type="button" class="btn btn-default waves-effect"
+																			data-dismiss="modal">Cancelar
+															</button>
+														</div>
+													</form>
+
+
+												</div>
+
+											</div>
+											<!-- /.modal-content -->
+										</div>
+										<!-- /.modal-dialog -->
+									</div>
 						</div>
 					</div>
 				</div>
@@ -473,7 +509,45 @@
 								<span class="price">$</span>
 								<h1> 45.000 </h1><span class="time">Por <br> Mes</span>
 							</div>
-							<a href="{% url 'home' %}" class="primary-btn header-btn">Empezar</a>
+							<button type="button" class="btn btn-info btn-rounded" data-toggle="modal"
+														data-target="#add-contact">Empezar
+										</button>
+							<!-- comeinza el modal -->
+							<div id="add-contact" class="modal fade in" tabindex="-1" role="dialog"
+											 aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal"
+																	aria-hidden="true">×
+													</button>
+													<h4 class="modal-title" id="myModalLabel">Pide tu fanquisia</h4></div>
+												<div class="modal-body">
+													<form class="form-horizontal form-material" method="post"
+																id="formulario" >
+															{% csrf_token %}
+														{{ formulario|crispy   }}
+
+
+
+														<div class="modal-footer">
+															<button type="submit" class="btn btn-info waves-effect">
+																Enviar
+															</button>
+															<button type="button" class="btn btn-default waves-effect"
+																			data-dismiss="modal">Cancelar
+															</button>
+														</div>
+													</form>
+
+
+												</div>
+
+											</div>
+											<!-- /.modal-content -->
+										</div>
+										<!-- /.modal-dialog -->
+									</div>
 						</div>
 					</div>
 				</div>
