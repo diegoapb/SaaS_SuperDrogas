@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib import messages
+from django.contrib.auth import login
 from django.core.mail import EmailMessage
 from django.db import transaction
 from django.http import HttpResponseRedirect
@@ -28,9 +29,9 @@ def landing(request):
             nombre_Franquisia = formulario.cleaned_data['nombre_Franquisia']
             plan = formulario.cleaned_data['plan']
             mensaje = formulario.cleaned_data['mensaje']
-            mensajeEnviar = "<h2>Petición de Franquisia de " + nombre+" " + apellido + "</h2><br>" + " " + "<p>Nombre de la Franquisia es : <strong>"+ nombre_Franquisia +"</strong>"+"con el plan de: "+plan+"</p><br><p>"+"Mensaje que el envio: "+mensaje+"</p><br>"
+            mensajeEnviar = "<h2>Petición de Franquisia de " + nombre + " " + apellido + "</h2><br>" + " " + "<p>Nombre de la Franquisia es : <strong>" + nombre_Franquisia + "</strong>" + "con el plan de: " + plan + "</p><br><p>" + "Mensaje que el envio: " + mensaje + "</p><br>"
             correo = formulario.cleaned_data['correo']
-            email = EmailMessage(asunto, mensajeEnviar, to=[correo])
+            email = EmailMessage(asunto, mensajeEnviar, to=['edwinbaltazar1996@gmail.com'])
             email.send()
         return HttpResponseRedirect('/')
     else:
@@ -39,9 +40,27 @@ def landing(request):
     return render_to_response('landing/index.html', {'formulario': formulario}, RequestContext(request))
 
 
-# decorador :)
+# Crear un login para el super usuario
+@csrf_exempt
+def login_view(request):
+    next = request.GET.get('')
+    form = UserLoginForm(request.POST or None)
+    if form.is_valid():
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+        user = authenticate(username=username, password=password)
+        login(request, user)
 
-# enviar correo electronico
+        if next:
+            return redirect(next)
+
+        return redirect('/clientes/registrar/')
+
+    context = {
+        'form': form,
+
+    }
+    return render(request, 'login.html', context)
 
 
 def home(request):
