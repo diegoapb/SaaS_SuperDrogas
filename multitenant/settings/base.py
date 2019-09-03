@@ -127,10 +127,9 @@ WSGI_APPLICATION = 'multitenant.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django_tenants.postgresql_backend',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
+        'NAME': 'multitenant',
+        'USER': 'oliver',
+        'PASSWORD': 'daniel261516',
         'PORT': '5432',
     }
 }
@@ -206,7 +205,13 @@ SOCIAL_AUTH_GITHUB_SECRET = '6cfe527a12e9619b2cdb0cce58ccd541770a07e8'
 SOCIAL_AUTH_FACEBOOK_KEY = '376245216421538'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = 'ad588fb09bb5d78853c55e39b96d7a0f'  # App Secret
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
-# Fin NO USO
-
+# Fin
+# EMAil
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'edwindanielbaltazarterbullino@gmail.com'
+EMAIL_HOST_PASSWORD = 'daniel261516'
+EMAIL_PORT = 587
 # Crispy
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
