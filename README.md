@@ -68,6 +68,23 @@ Para finalizar solo debemos ingresar al localhost mencionado por el servidor par
 http://localhost:8000
 ```
 
+
+## Producción
+
+Construimos el proyecto y lo corremos
+
+```
+docker-compose -f docker-compose.prod.yml up -d --build
+```
+
+Se agregan los datos iniciales a la BD
+
+```
+docker exec -it saas_pg_prod psql -U postgres -d multitenant -f /home/_datos_iniciales/2_tenant_publico.sql
+```
+
+
+
 ## Tests
 
 ## Construido con:
@@ -87,3 +104,45 @@ http://localhost:8000
 * [Carlos Acuaruri]()-06
 
 ## Licencia
+
+
+# Documentación
+
+tenant_command
+~~~~~~~~~~~~~~
+
+To run any command on an individual schema, you can use the special ``tenant_command``, which creates a wrapper around your command so that it only runs on the schema you specify. For example
+
+.. code-block:: bash
+
+    ./manage.py tenant_command loaddata
+
+If you don't specify a schema, you will be prompted to enter one. Otherwise, you may specify a schema preemptively
+
+.. code-block:: bash
+
+    ./manage.py tenant_command loaddata --schema=customer1
+
+create_tenant_superuser
+~~~~~~~~~~~~~~~~~~~~~~~
+
+The command ``create_tenant_superuser`` is already automatically wrapped to have a ``schema`` flag. Create a new super user with
+
+.. code-block:: bash
+
+    ./manage.py create_tenant_superuser --username=admin --schema=customer1
+
+
+create_tenant
+~~~~~~~~~~~~~
+
+The command ``create_tenant`` creates a new schema
+
+.. code-block:: bash
+
+    ./manage.py create_tenant --domain_url=newtenant.net --schema_name=new_tenant --name=new_tenant --description="New tenant"
+
+The argument are dynamic depending on the fields that are in the ``TenantMixin`` model.
+For example if you have a field in the ``TenantMixin`` model called company you will be able to set this using --company=MyCompany.
+If no argument are specified for a field then you be promted for the values.
+There is an additional argument of -s which sets up a superuser for that tenant.

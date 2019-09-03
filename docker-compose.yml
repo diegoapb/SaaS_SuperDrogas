@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 services:
   postgres:
     container_name: saas_pg
@@ -14,15 +14,25 @@ services:
       - postgres-data:/var/lib/postgresql/data
       - ./_datos_iniciales:/home/_datos_iniciales
     restart: unless-stopped
-  
+
   web:
     container_name: saas_web
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/code
+      - .:/usr/src/app/
     ports:
       - "8000:8000"
+    environment:
+#      - DEBUG=1
+#      - SECRET_KEY=foo
+#      - SQL_ENGINE=django.db.backends.postgresql
+      - SQL_DATABASE=multitenant
+      - SQL_USER=postgres
+      - SQL_PASSWORD=postgres
+      - SQL_HOST=postgres
+      - SQL_PORT=5432
+      - DATABASE=postgres
     depends_on:
       - postgres
 

@@ -1,0 +1,57 @@
+version: '3.7'
+services:
+  postgres:
+    container_name: saas_pg_prod
+    image: postgres:11.5-alpine
+    hostname: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: multitenant
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./_datos_iniciales:/home/_datos_iniciales
+
+    restart: unless-stopped
+
+  web:
+    container_name: saas_web_prod
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    command: gunicorn multitenant.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - static_volume:/usr/src/staticfiles
+      - media_volume:/usr/src/mediafiles
+    expose:
+      - 8000
+    environment:
+      #      - DEBUG=1
+      #      - SECRET_KEY=foo
+      #      - SQL_ENGINE=django.db.backends.postgresql
+      - SQL_DATABASE=multitenant
+      - SQL_USER=postgres
+      - SQL_PASSWORD=postgres
+      - SQL_HOST=postgres
+      - SQL_PORT=5432
+      - DATABASE=postgres
+    depends_on:
+      - postgres
+  nginx:
+    container_name: saas_nginx_prod
+    build: ./nginx
+    volumes:
+      - static_volume:/usr/src/staticfiles
+      - media_volume:/usr/src/mediafiles
+    ports:
+      #      - 1337:80
+      - 80:80
+    depends_on:
+      - web
+
+volumes:
+  postgres-data:
+  static_volume:
+  media_volume:

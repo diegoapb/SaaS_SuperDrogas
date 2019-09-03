@@ -1,0 +1,125 @@
+{% extends "administrador/account/base.html" %}
+{% block head_title %}Administrar productos{% endblock head_title %}
+{% load crispy_forms_tags %}
+{% block inner %}
+
+
+	<div class="container-fluid">
+
+		<div class="row page-titles">
+			<div class="col-md-6 col-8 align-self-center">
+				<h3 class="text-themecolor m-b-0 m-t-0">Tabla</h3>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="{% url 'administrador:home' %}">Inicio</a></li>
+					<li class="breadcrumb-item active">Tabla</li>
+				</ol>
+			</div>
+			<div class="col-md-6 col-4 align-self-center">
+				<button class="right-side-toggle waves-effect waves-light btn-info btn-circle btn-sm pull-right m-l-10">
+					<i class="ti-settings text-white"></i></button>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-block">
+						<h4 class="card-title">Productos</h4>
+						<h6 class="card-subtitle"></h6>
+						<div class="table-responsive">
+							<table id="demo-foo-addrow" class="table m-t-30 table-hover contact-list"
+										 data-page-size="10">
+								<thead>
+								<tr>
+									<th>#</th>
+									<th>Titulo</th>
+									<th>Precio</th>
+									<th>Precio en descuento</th>
+									<th>Categoria</th>
+								</tr>
+								</thead>
+								<tbody>
+								{% for item in object_list %}
+									<tr>
+										<td>{{ forloop.counter }}</td>
+										<td>
+											{{ item.title }}
+										</td>
+										<td>{{ item.price }}</td>
+										<td>{{ item.discount_price }}</td>
+										<td>{{ item.get_category_display }}</td>
+										<td>
+											<a href="{% url 'administrador:delete-product' item.id %}">
+												<button type="button"
+																class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn"
+																data-toggle="tooltip" data-original-title="Delete">
+													<i class="ti-close"
+														 aria-hidden="true">
+													</i>
+												</button>
+											</a>
+										</td>
+									</tr>
+								{% endfor %}
+								</tbody>
+								<tfoot>
+								<tr>
+									<td colspan="2">
+										<button type="button" class="btn btn-info btn-rounded" data-toggle="modal"
+														data-target="#add-contact">Agregar producto
+										</button>
+									</td>
+									<div id="add-contact" class="modal fade in" tabindex="-1" role="dialog"
+											 aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal"
+																	aria-hidden="true">×
+													</button>
+													<h4 class="modal-title" id="myModalLabel">Agregar</h4></div>
+												<div class="modal-body">
+														<form class="form-horizontal form-material" method="post"
+																action="{% url 'administrador:create-product' %}">
+														{% csrf_token %}
+														{{ form_products|crispy }}
+
+														<div class="modal-footer">
+															<button type="submit" class="btn btn-info waves-effect">
+																Crear Producto
+															</button>
+															<button type="button" class="btn btn-default waves-effect"
+																			data-dismiss="modal">Cancelar
+															</button>
+														</div>
+													</form>
+
+
+												</div>
+
+											</div>
+											<!-- /.modal-content -->
+										</div>
+										<!-- /.modal-dialog -->
+									</div>
+									<td colspan="7">
+										<div class="text-right">
+											<ul class="pagination"></ul>
+										</div>
+									</td>
+								</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+
+
+
+{% endblock %}

@@ -1,73 +1,155 @@
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm, UserCreationForm
-from django.contrib.auth import update_session_auth_hash, login, authenticate
-from django.contrib import messages
-from django.shortcuts import render, redirect
+# Django
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import (
+    ListView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+    DetailView,
+    View,
+)
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
+# from braces.views import MessageMixin
+from django.urls import reverse_lazy
 
-from social_django.models import UserSocialAuth
+# Models
+from .models import (
+    Role,
+)
+from apps.ecommerce.models import Item
+
+# Django user model
+from django.contrib.auth.models import User
+
+# Forms
+from .forms import (
+    RegisterForm,
+    RoleForm,
+    UserForm,
+    ItemsForm,
+)
 
 
-def signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            user = authenticate(
-                username=form.cleaned_data.get('username'),
-                password=form.cleaned_data.get('password1')
-            )
-            login(request, user)
-            return redirect('home')
-    else:
-        form = UserCreationForm()
-    return render(request, 'registration/signup.html', {'form': form})
+class HomeView(View):
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            role = Role.objects.get(user=self.request.user)
+            context = {
+                'role': role
+            }
+            # Administrador
+            if role.user_type == 1:
+                return render(self.request, 'administrador/account/dashboard.html', context)
+            # Vendedor
+            elif role.user_type == 2:
+                return render(self.request, 'administrador/account/dashboard.html', context)
+            # Cliente online
+            elif role.user_type == 3:
+                return redirect('store:home-ecommerce')
+        # No esta logeado
+        return redirect('store:home-ecommerce')
 
-@login_required
-def home(request):
-    return render(request, 'administrador/account/dashboard.html')
 
-@login_required
-def settings(request):
-    user = request.user
+class UsersManagerView(LoginRequiredMixin, ListView):
+    model = Role
+    paginate_by = 10
+    template_name = "administrador/account/manage_users.html"
 
-    try:
-        github_login = user.social_auth.get(provider='github')
-    except UserSocialAuth.DoesNotExist:
-        github_login = None
-    try:
-        twitter_login = user.social_auth.get(provider='twitter')
-    except UserSocialAuth.DoesNotExist:
-        twitter_login = None
-    try:
-        facebook_login = user.social_auth.get(provider='facebook')
-    except UserSocialAuth.DoesNotExist:
-        facebook_login = None
+    form_register = RegisterForm
+    extra_context = {
+        'form_register': form_register
+    }
 
-    can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
+    def get_context_data(self, **kwargs):
+        context = super(self.__class__, self).get_context_data(**kwargs)
+        for key, value in self.extra_context.items():
+            if callable(value):
+                context[key] = value()
+            else:
+                context[key] = value
+        return context
 
-    return render(request, 'administrador/account/social_settings.html', {
-        'github_login': github_login,
-        'twitter_login': twitter_login,
-        'facebook_login': facebook_login,
-        'can_disconnect': can_disconnect
-    })
 
-@login_required
-def password(request):
-    if request.user.has_usable_password():
-        PasswordForm = PasswordChangeForm
-    else:
-        PasswordForm = AdminPasswordChangeForm
+class UsersCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    template_name = "administrador/account/create_users.html"
+    form_class = RegisterForm
+    success_message = "User created successfully"
+    success_url = reverse_lazy('administrador:user-manager')
 
-    if request.method == 'POST':
-        form = PasswordForm(request.user, request.POST)
-        if form.is_valid():
-            form.save()
-            update_session_auth_hash(request, form.user)
-            messages.success(request, 'Your password was successfully updated!')
-            return redirect('password')
-        else:
-            messages.error(request, 'Please correct the error below.')
-    else:
-        form = PasswordForm(request.user)
-    return render(request, 'administrador/account/social_password.html', {'form': form})
+
+class RoleUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = "administrador/account/update_role.html"
+    form_class = RoleForm
+    queryset = Role.objects.all()
+    success_url = reverse_lazy('administrador:user-manager')
+
+    def get_object(self, queryset=None):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Role, id=id_)
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
+
+
+class UserUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = "administrador/account/update_user.html"
+    form_class = UserForm
+    queryset = User.objects.all()
+    success_url = reverse_lazy('administrador:user-manager')
+
+    def get_object(self, queryset=None):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(User, id=id_)
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
+
+
+class UserDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+    template_name = "administrador/account/delete_user.html"
+    success_message = "User deleted successfully"
+    success_url = reverse_lazy('administrador:user-manager')
+
+    def get_object(self, queryset=None):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(User, id=id_)
+
+
+# Ecommerce admin
+
+class ProductManagerView(LoginRequiredMixin, ListView):
+    model = Item
+    paginate_by = 10
+    template_name = "administrador/account/manage_items.html"
+
+    form_products = ItemsForm
+    extra_context = {
+        'form_products': form_products
+    }
+
+    def get_context_data(self, **kwargs):
+        context = super(self.__class__, self).get_context_data(**kwargs)
+        for key, value in self.extra_context.items():
+            if callable(value):
+                context[key] = value()
+            else:
+                context[key] = value
+        return context
+
+
+class ProductCreateView(LoginRequiredMixin, CreateView):
+    template_name = "administrador/account/create_product.html"
+    form_class = ItemsForm
+    success_url = reverse_lazy('administrador:product-manager')
+
+
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
+    success_url = reverse_lazy('administrador:product-manager')
+    template_name = "administrador/account/delete_product.html"
+
+    def get_object(self, queryset=None):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Item, id=id_)
