@@ -29,8 +29,11 @@ def landing(request):
             nombre_Franquisia = formulario.cleaned_data['nombre_Franquisia']
             plan = formulario.cleaned_data['plan']
             mensaje = formulario.cleaned_data['mensaje']
-            mensajeEnviar = "<h2>Petición de Franquisia de " + nombre + " " + apellido + "</h2><br>" + " " + "<p>Nombre de la Franquisia es : <strong>" + nombre_Franquisia + "</strong>" + "con el plan de: " + plan + "</p><br><p>" + "Mensaje que el envio: " + mensaje + "</p><br>"
             correo = formulario.cleaned_data['correo']
+            mensajeEnviar = "<h2>Petición de Franquisia de " + nombre + " " + apellido + "</h2><br>" + " " + \
+                            "<p>Nombre de la Franquisia es : <strong>" + nombre_Franquisia + "</strong>" + "con el plan de: " + \
+                            plan + "</p><br><p>" + "Mensaje que el envio: " + mensaje + "</p><br> Su correo es : " + correo
+
             email = EmailMessage(asunto, mensajeEnviar, to=['edwinbaltazar1996@gmail.com'])
             email.send()
         return HttpResponseRedirect('/')
@@ -41,20 +44,19 @@ def landing(request):
 
 
 # Crear un login para el super usuario
-@csrf_exempt
+
 def login_view(request):
     next = request.GET.get('')
     form = UserLoginForm(request.POST or None)
     if form.is_valid():
         username = form.cleaned_data.get('username')
         password = form.cleaned_data.get('password')
-        user = authenticate(username=username, password=password)
-        login(request, user)
+        if username == 'admin' and password == 'daniel123456':
+            ruta = "/clientes/registrar/"
+        else:
+            ruta = "/clientes/registrar/"
 
-        if next:
-            return redirect(next)
-
-        return redirect('/clientes/registrar/')
+        return redirect(ruta)
 
     context = {
         'form': form,
