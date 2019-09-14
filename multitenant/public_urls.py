@@ -11,6 +11,7 @@ urlpatterns = [
     path('administrador/', home, name='home'),
     path('clientes/', include('apps.clientes.urls', namespace='clientes')),
     path('myadmin/', admin.site.urls),
+    path('tpv/', include('apps.TPV.urls', namespace='tpv')),
 ]
 
 if settings.DEBUG:
