@@ -23,18 +23,18 @@ def landing(request):
     if request.method == 'POST':
         formulario = FormularioContacto(request.POST)
         if formulario.is_valid():
-            asunto = 'APROBACIÓN DE UNA FRANQUISIA'
+            asunto = 'APROBACIÓN DE UNA FRANQUICIA'
             nombre = formulario.cleaned_data['nombre']
             apellido = formulario.cleaned_data['apellido']
             nombre_Franquisia = formulario.cleaned_data['nombre_Franquisia']
             plan = formulario.cleaned_data['plan']
             mensaje = formulario.cleaned_data['mensaje']
             correo = formulario.cleaned_data['correo']
-            mensajeEnviar = "<h2>Petición de Franquisia de " + nombre + " " + apellido + "</h2><br>" + " " + \
-                            "<p>Nombre de la Franquisia es : <strong>" + nombre_Franquisia + "</strong>" + "con el plan de: " + \
-                            plan + "</p><br><p>" + "Mensaje que el envio: " + mensaje + "</p><br> Su correo es : " + correo
+            mensajeEnviar = "<h2>Petición de Franquicia de " + nombre + " " + apellido + "</h2><br>" + " " + \
+                            "<p>Nombre de la Franquicia es : <strong>" + nombre_Franquisia + "</strong>" + "con el plan de: " + \
+                            plan + "</p><br><p>" + "Mensaje que envió: " + mensaje + "</p><br> Su correo es: " + correo
 
-            email = EmailMessage(asunto, mensajeEnviar, to=['edwinbaltazar1996@gmail.com'])
+            email = EmailMessage(asunto, mensajeEnviar, 'carlos.aucaruri@gmail.com', [correo])
             email.send()
         return HttpResponseRedirect('/')
     else:

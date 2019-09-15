@@ -128,8 +128,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django_tenants.postgresql_backend',
         'NAME': 'multitenant',
-        'USER': 'oliver',
-        'PASSWORD': 'daniel261516',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
         'PORT': '5432',
     }
 }
@@ -208,10 +208,10 @@ SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 # Fin
 # EMAil
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'edwindanielbaltazarterbullino@gmail.com'
-EMAIL_HOST_PASSWORD = 'daniel261516'
 EMAIL_PORT = 587
+EMAIL_HOST_USER = 'carlos.aucaruri@gmail.com'
+EMAIL_HOST_PASSWORD = 'Dark_Matter1008'
+EMAIL_USE_TLS = True
 # Crispy
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
