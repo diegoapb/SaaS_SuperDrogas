@@ -206,7 +206,13 @@ SOCIAL_AUTH_GITHUB_SECRET = '6cfe527a12e9619b2cdb0cce58ccd541770a07e8'
 SOCIAL_AUTH_FACEBOOK_KEY = '376245216421538'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = 'ad588fb09bb5d78853c55e39b96d7a0f'  # App Secret
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
-# Fin NO USO
-
+# Fin
+# EMAil
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'carlos.aucaruri@gmail.com'
+EMAIL_HOST_PASSWORD = 'Dark_Matter1008'
+EMAIL_USE_TLS = True
 # Crispy
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
