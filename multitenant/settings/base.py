@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ['.localhost']
 SHARED_APPS = (
     'django_tenants',  # Obligatorio
     'apps.clientes',  # Se debe listar la app que contiene el modelo que representa al tenant
+    'apps.administrador',
     'django.contrib.contenttypes',
 
     # everything below here is optional
@@ -130,7 +131,6 @@ DATABASES = {
         'NAME': 'multitenant',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -210,6 +210,11 @@ SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 # EMAil
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
+<<<<<<< HEAD
+=======
+EMAIL_HOST_USER = 'carlos.aucaruri@gmail.com'
+EMAIL_HOST_PASSWORD = 'Dark_Matter1008'
+>>>>>>> master
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'carlos.aucaruri@gmail.com'
 EMAIL_HOST_PASSWORD = 'Dark_Matter1008'

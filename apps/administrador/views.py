@@ -35,6 +35,7 @@ class HomeView(View):
     def get(self, *args, **kwargs):
         if self.request.user.is_authenticated:
             role = Role.objects.get(user=self.request.user)
+
             context = {
                 'role': role
             }
