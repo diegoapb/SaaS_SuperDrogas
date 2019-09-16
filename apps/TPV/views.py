@@ -5,16 +5,16 @@ from django.db.models import Q
 
 def index(request):
     items = Item.objects.all()
-    return render(request, 'TPV/index.html', {'items': items})
+    return render(request, 'tpv/index.html', {'items': items})
 
 def ventas(request):
     items = Item.objects.all()
-    return render(request, 'TPV/ventas.html', {'items': items})
+    return render(request, 'tpv/ventas.html', {'items': items})
 
 def medicamentos(request):
     items = Item.objects.all()
-    return render(request, 'TPV/medicamentos.html', {'items': items})
+    return render(request, 'tpv/medicamentos.html', {'items': items})
 
 def reportes(request):
     items = Item.objects.all()
-    return render(request, 'TPV/reportes.html', {'items': items})
+    return render(request, 'tpv/reportes.html', {'items': items})

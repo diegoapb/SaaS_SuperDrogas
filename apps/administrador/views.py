@@ -44,7 +44,7 @@ class HomeView(View):
                 return render(self.request, 'administrador/account/dashboard.html', context)
             # Vendedor
             elif role.user_type == 2:
-                return render(self.request, 'administrador/account/dashboard.html', context)
+                return redirect('tpv:index')
             # Cliente online
             elif role.user_type == 3:
                 return redirect('store:home-ecommerce')

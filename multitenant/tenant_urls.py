@@ -17,8 +17,8 @@ urlpatterns = [
     # App ecommmerce
     path('store/', include('apps.ecommerce.urls', namespace='store')),
 
-    # App TPV
-    path('tpv/', include('apps.TPV.urls', namespace='tpv')),
+    # App tpv
+    path('tpv/', include('apps.tpv.urls', namespace='tpv')),
 
     # Professor app
     path('mensajes/', include('apps.mensajes.urls', namespace='mensajes')),
