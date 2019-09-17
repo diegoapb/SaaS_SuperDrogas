@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Producto(models.Model):
+class Venta(models.Model):
     id = models.AutoField(primary_key = True)
     nombre = models.CharField('Nombre del Producto', max_length = 100, blank = False, null = False)
     codigo = models.CharField('Código del Producto', max_length = 15, blank = False, null = False)
