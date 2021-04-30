@@ -31,6 +31,6 @@ social-auth-app-django==3.1.0
 social-auth-core==3.2.0
 sqlparse==0.3.0
 stripe==2.35.1
-urllib3==1.25.3
+urllib3==1.25.8
 virtualenv==16.7.4
 virtualenv-clone==0.5.3
