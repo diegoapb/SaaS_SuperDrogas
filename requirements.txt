@@ -20,7 +20,7 @@ pipenv==2018.11.26
 psycopg2==2.8.1
 psycopg2-binary==2.8.3
 pycodestyle==2.5.0
-PyJWT==1.7.1
+PyJWT==2.4.0
 python-decouple==3.1
 python3-openid==3.1.0
 pytz==2019.1
